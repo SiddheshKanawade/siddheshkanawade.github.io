@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hello Friend NG</title>
+    <title>Hello, Siddhesh Kanawade here</title>
     <link>https://siddhesh.github.io/</link>
-    <description>Recent content on Hello Friend NG</description>
+    <description>Recent content on Hello, Siddhesh Kanawade here</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
-    <lastBuildDate>Sun, 10 Jul 2022 15:35:40 +0530</lastBuildDate><atom:link href="https://siddhesh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 Jul 2022 15:35:40 +0530</lastBuildDate><atom:link href="https://siddhesh.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GSoC: Week 5</title>
+      <link>https://siddhesh.github.io/posts/week5/</link>
+      <pubDate>Mon, 11 Jul 2022 15:35:40 +0530</pubDate>
+      
+      <guid>https://siddhesh.github.io/posts/week5/</guid>
+      <description>Tasks: ✅ casbin-example respository multiple depencies version conflict resolve ✅ Reallife example for Axum middleware
+Workflow Error Compilation
+Tokio reimport error(after resolving error in actix-casbin and actix-casbin-auth):
+error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&amp;gt; /home/siddhesh/.</description>
+    </item>
+    
     <item>
       <title>GSoC: Week 1 and 2</title>
-      <link>https://siddhesh.github.io/posts/2022/07/gsoc-week-1-and-2/</link>
+      <link>https://siddhesh.github.io/posts/week1n2/</link>
       <pubDate>Sun, 10 Jul 2022 15:35:40 +0530</pubDate>
       
-      <guid>https://siddhesh.github.io/posts/2022/07/gsoc-week-1-and-2/</guid>
+      <guid>https://siddhesh.github.io/posts/week1n2/</guid>
       <description>Tasks: ❎ casbin-grpc respository maintainence ✅ Integrate Axum middleware with Casbin
 Workflow Casbin is provide support to Actix, Actix Web and Rocket middleware. I was assigned to</description>
+    </item>
+    
+    <item>
+      <title>GSoC: Week 3 and 4</title>
+      <link>https://siddhesh.github.io/posts/week3n4/</link>
+      <pubDate>Sun, 10 Jul 2022 15:35:40 +0530</pubDate>
+      
+      <guid>https://siddhesh.github.io/posts/week3n4/</guid>
+      <description>Tasks: ✅ casbin-rs/example respository maintainence ✅ Add CI to axum middleware ✅ Add tests and examples to axum-casbin-auth
+Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
+error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&amp;gt; /Users/macbookair/.</description>
     </item>
     
   </channel>

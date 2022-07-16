@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Siddhesh Kanawade ">
+<meta name="description" content="Tasks: ✅ casbin-rs/example respository maintainence ✅ Add CI to axum middleware ✅ Add tests and examples to axum-casbin-auth
+Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
+error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&amp;gt; /Users/macbookair/." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://siddhesh.github.io/posts/week3n4/" />
+
+
+    <title>
+        
+            GSoC: Week 3 and 4 :: Hello, Siddhesh Kanawade here 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://siddhesh.github.io/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://siddhesh.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://siddhesh.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://siddhesh.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://siddhesh.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://siddhesh.github.io/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://siddhesh.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="GSoC: Week 3 and 4">
+<meta itemprop="description" content="Tasks: ✅ casbin-rs/example respository maintainence ✅ Add CI to axum middleware ✅ Add tests and examples to axum-casbin-auth
+Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
+error[E0252]: the name `IoError` is defined multiple times --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&gt; /Users/macbookair/."><meta itemprop="datePublished" content="2022-07-10T15:35:40+05:30" />
+<meta itemprop="dateModified" content="2022-07-10T15:35:40+05:30" />
+<meta itemprop="wordCount" content="1705"><meta itemprop="image" content="https://siddhesh.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://siddhesh.github.io"/>
+
+<meta name="twitter:title" content="GSoC: Week 3 and 4"/>
+<meta name="twitter:description" content="Tasks: ✅ casbin-rs/example respository maintainence ✅ Add CI to axum middleware ✅ Add tests and examples to axum-casbin-auth
+Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
+error[E0252]: the name `IoError` is defined multiple times --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&gt; /Users/macbookair/."/>
+
+
+
+    <meta property="og:title" content="GSoC: Week 3 and 4" />
+<meta property="og:description" content="Tasks: ✅ casbin-rs/example respository maintainence ✅ Add CI to axum middleware ✅ Add tests and examples to axum-casbin-auth
+Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
+error[E0252]: the name `IoError` is defined multiple times --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&gt; /Users/macbookair/." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://siddhesh.github.io/posts/week3n4/" /><meta property="og:image" content="https://siddhesh.github.io"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-10T15:35:40+05:30" />
+<meta property="article:modified_time" content="2022-07-10T15:35:40+05:30" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-07-10 15:35:40 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://siddhesh.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text">Welcome/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://siddhesh.github.io/about/">About</a></li><li><a href="https://siddhesh.github.io/posts/">GSoC</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+  <main class="post">
+
+    <div class="post-info">
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        9 minutes
+
+        
+      </p>
+    </div>
+
+    <article>
+      <h1 class="post-title">
+        <a href="https://siddhesh.github.io/posts/week3n4/">GSoC: Week 3 and 4</a>
+      </h1>
+
+      
+
+      
+
+      
+
+      <div class="post-content">
+        <h3 id="tasks">Tasks:</h3>
+<p>✅ casbin-rs/example respository maintainence <br>
+✅ Add CI to axum middleware <br>
+✅ Add tests and examples to axum-casbin-auth</p>
+<h2 id="workflow">Workflow</h2>
+<h3 id="casbin-rsexamples">Casbin-rs/examples</h3>
+<p>The repository had the following set of errors when ran for the first time:</p>
+<pre tabindex="0"><code class="language-error" data-lang="error">error[E0252]: the name `IoError` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10
+   |
+13 |     io::{BufReader, Error as IoError, ErrorKind},
+   |                     ---------------- previous import of the type `IoError` here
+...
+20 |     io::{Error as IoError, ErrorKind},
+   |          ^^^^^^^^^^^^^^^^--
+   |          |
+   |          `IoError` reimported here
+   |          help: remove unnecessary import
+   |
+   = note: `IoError` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `ErrorKind` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:28
+   |
+13 |     io::{BufReader, Error as IoError, ErrorKind},
+   |                                       --------- previous import of the type `ErrorKind` here
+...
+20 |     io::{Error as IoError, ErrorKind},
+   |                            ^^^^^^^^^ `ErrorKind` reimported here
+   |
+   = note: `ErrorKind` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `Path` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:21:5
+   |
+14 |     path::Path,
+   |     ---------- previous import of the type `Path` here
+...
+21 |     path::Path,
+   |     ^^^^^^^^^^ `Path` reimported here
+   |
+   = note: `Path` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+21 |     path::Path as OtherPath,
+   |     ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `File` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:25:5
+   |
+11 |     fs::File,
+   |     -------- previous import of the type `File` here
+...
+25 |     fs::File,
+   |     ^^^^^^^^ `File` reimported here
+   |
+   = note: `File` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+25 |     fs::File as OtherFile,
+   |     ~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `BufReader` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:26:42
+   |
+13 |     io::{BufReader, Error as IoError, ErrorKind},
+   |          --------- previous import of the type `BufReader` here
+...
+26 |     io::{AsyncBufReadExt, AsyncWriteExt, BufReader},
+   |                                          ^^^^^^^^^ `BufReader` reimported here
+   |
+   = note: `BufReader` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+26 |     io::{AsyncBufReadExt, AsyncWriteExt, BufReader as OtherBufReader},
+   |                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `Cursor` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:13:11
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |                     ------ previous import of the type `Cursor` here
+...
+13 | use std::{io::Cursor, path::Path};
+   |           ^^^^^^^^^^ `Cursor` reimported here
+   |
+   = note: `Cursor` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+13 | use std::{io::Cursor as OtherCursor, path::Path};
+   |           ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `Path` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:13:23
+   |
+10 | use async_std::{fs::File, path::Path};
+   |                           ---------- previous import of the type `Path` here
+...
+13 | use std::{io::Cursor, path::Path};
+   |                       ^^^^^^^^^^ `Path` reimported here
+   |
+   = note: `Path` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+13 | use std::{io::Cursor, path::Path as OtherPath};
+   |                       ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `BufReader` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:16:36
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |          --------- previous import of the type `BufReader` here
+...
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader, Error as IoError, ErrorKind,
+   |                                    ^^^^^^^^^ `BufReader` reimported here
+   |
+   = note: `BufReader` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader as OtherBufReader, Error as IoError, ErrorKind,
+   |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `IoError` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:16:47
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |                             ---------------- previous import of the type `IoError` here
+...
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader, Error as IoError, ErrorKind,
+   |                                               ^^^^^^^^^^^^^^^^--
+   |                                               |
+   |                                               `IoError` reimported here
+   |                                               help: remove unnecessary import
+   |
+   = note: `IoError` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `ErrorKind` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:16:65
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |                                               --------- previous import of the type `ErrorKind` here
+...
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader, Error as IoError, ErrorKind,
+   |                                                                 ^^^^^^^^^-
+   |                                                                 |
+   |                                                                 `ErrorKind` reimported here
+   |                                                                 help: remove unnecessary import
+   |
+   = note: `ErrorKind` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `File` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:20:5
+   |
+10 | use async_std::{fs::File, path::Path};
+   |                 -------- previous import of the type `File` here
+...
+20 | use tokio::fs::File;
+   |     ^^^^^^^^^^^^^^^ `File` reimported here
+   |
+   = note: `File` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+20 | use tokio::fs::File as OtherFile;
+   |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `Path` is defined multiple times
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/model/default_model.rs:20:5
+   |
+17 | use async_std::path::Path;
+   |     --------------------- previous import of the type `Path` here
+...
+20 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^ `Path` reimported here
+   |
+   = note: `Path` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+20 | use std::path::Path as OtherPath;
+   |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Compiling actix-codec v0.3.0
+error[E0599]: no method named `next_line` found for struct `async_std::io::Lines` in the current scope
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:66:38
+   |
+66 |         while let Some(line) = lines.next_line().await? {
+   |                                      ^^^^^^^^^ method not found in `async_std::io::Lines&lt;async_std::io::BufReader&lt;async_std::fs::File&gt;&gt;`
+
+error[E0599]: no method named `next_line` found for struct `async_std::io::Lines` in the current scope
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:91:38
+   |
+91 |         while let Some(line) = lines.next_line().await? {
+   |                                      ^^^^^^^^^ method not found in `async_std::io::Lines&lt;async_std::io::BufReader&lt;async_std::fs::File&gt;&gt;`
+
+   Compiling h2 v0.2.7
+Some errors have detailed explanations: E0252, E0599.
+For more information about an error, try `rustc --explain E0252`.
+error: could not compile `casbin` due to 14 previous errors
+</code></pre><p>After analyzing it was found that both <code>tokio</code> and <code>async-std</code> features of casbin were enabled which should be the case. I decided compile the individual examples and then compile the rest project.</p>
+<h4 id="actix-fileadapter-rbac-and-actix-pgsql-simple">actix-fileadapter-rbac and actix-pgsql-simple</h4>
+<p>There was no error thrown after updating the dependencies and compiled successfully</p>
+<h4 id="ntex-fileadapter-acl">ntex-fileadapter-acl</h4>
+<p>All the depedencies were to the mark, but it threw following error after running <code>cargo build</code></p>
+<pre tabindex="0"><code class="language-error" data-lang="error">error[E0432]: unresolved import `crate::rt::Signal`
+ --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/builder.rs:8:24
+  |
+8 | use crate::rt::{spawn, Signal, System};
+  |                        ^^^^^^ no `Signal` in `rt`
+
+error[E0432]: unresolved import `crate::rt::tcp_connect`
+ --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/test.rs:6:17
+  |
+6 | use crate::rt::{tcp_connect, System};
+  |                 ^^^^^^^^^^^ no `tcp_connect` in `rt`
+
+error[E0425]: cannot find function `signal` in module `crate::rt`
+   --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/builder.rs:480:38
+    |
+480 |         if let Some(rx) = crate::rt::signal() {
+    |                                      ^^^^^^ not found in `crate::rt`
+
+error[E0425]: cannot find function `from_tcp_stream` in module `rt`
+   --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/socket.rs:148:40
+    |
+148 |             Stream::Tcp(stream) =&gt; rt::from_tcp_stream(stream),
+    |                                        ^^^^^^^^^^^^^^^ not found in `rt`
+    |
+help: consider importing one of these items
+    |
+1   | use crate::connect::net::from_tcp_stream;
+    |
+1   | use ntex_connect::net::from_tcp_stream;
+    |
+help: if you import `from_tcp_stream`, refer to it directly
+    |
+148 -             Stream::Tcp(stream) =&gt; rt::from_tcp_stream(stream),
+148 +             Stream::Tcp(stream) =&gt; from_tcp_stream(stream),
+    | 
+
+error[E0425]: cannot find function `from_unix_stream` in module `rt`
+   --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/socket.rs:150:40
+    |
+150 |             Stream::Uds(stream) =&gt; rt::from_unix_stream(stream),
+    |                                        ^^^^^^^^^^^^^^^^ not found in `rt`
+    |
+help: consider importing one of these items
+    |
+1   | use crate::connect::net::from_unix_stream;
+    |
+1   | use ntex_connect::net::from_unix_stream;
+    |
+help: if you import `from_unix_stream`, refer to it directly
+    |
+150 -             Stream::Uds(stream) =&gt; rt::from_unix_stream(stream),
+150 +             Stream::Uds(stream) =&gt; from_unix_stream(stream),
+    | 
+
+error[E0412]: cannot find type `Signal` in module `crate::rt`
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/mod.rs:67:23
+   |
+67 |     Signal(crate::rt::Signal),
+   |                       ^^^^^^ not found in `crate::rt`
+   |
+help: there is an enum variant `crate::server::ServerCommand::Signal`; try using the variant&#39;s enum
+   |
+67 |     Signal(crate::server::ServerCommand),
+   |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0412]: cannot find type `Signal` in module `crate::rt`
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/ntex-0.5.24/src/server/mod.rs:91:38
+   |
+91 |     fn signal(&amp;self, sig: crate::rt::Signal) {
+   |                                      ^^^^^^ not found in `crate::rt`
+   |
+help: there is an enum variant `crate::server::ServerCommand::Signal`; try using the variant&#39;s enum
+   |
+91 |     fn signal(&amp;self, sig: crate::server::ServerCommand) {
+   |                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some errors have detailed explanations: E0412, E0425, E0432.
+For more information about an error, try `rustc --explain E0412`.
+error: could not compile `ntex` due to 7 previous errors
+</code></pre><p>After discussing with the ntex community it was found that incorrect features of <code>ntex</code> used. Entire conversation can be found <a href="https://github.com/ntex-rs/ntex/discussions/127">here</a> <code>ntex = &quot;0.5&quot;</code> was changed to <code>ntex = { version = &quot;0.5&quot;, features = [&quot;tokio&quot;] }</code>. Even after updating this, following error was thrown:</p>
+<pre tabindex="0"><code class="language-error" data-lang="error">error[E0599]: no method named `app_data` found for struct `App` in the current scope
+  --&gt; ntex-fileadapter-acl/src/main.rs:46:14
+   |
+46 |             .app_data(e.clone()) // &lt;- create app with shared state
+   |              ^^^^^^^^ method not found in `App&lt;ntex::service::Identity, web::app::Filter&lt;DefaultError&gt;&gt;`
+</code></pre><p>This is due to the version upgrade of ntex, resolve can be found <a href="https://github.com/casbin-rs/examples/pull/72/files#diff-63e997272b56167db79065780451a949630a1e40df2a762b297774fd2112769dL8">here</a></p>
+<h4 id="actix-middleware-example">actix-middleware-example</h4>
+<h3 id="ci-for-axum-middleware">CI for Axum middleware</h3>
+<p>Adding CI to enable github actions was the next task after adding the core code for the Axum middleware. I had <code>actix-casbin-auth</code> for reference and following commands were included in the CI.yml</p>
+<ul>
+<li><code>cargo build --verbose</code></li>
+<li><code>cargo clippy -- -D warnings</code></li>
+<li><code>cargo fmt --all -- --check</code></li>
+</ul>
+<p>I have added <code>Swatinem/rust-cache@v1</code> in order to build from cache. More information about it can be found <a href="https://github.com/Swatinem/rust-cache">here</a></p>
+<p>Following result was observed</p>
+<p><img src="https://siddhesh.github.io/img/week3n4/citest.png" alt="Image alt"></p>
+<h3 id="add-tests-and-examples-to-axum-casbin-auth">Add tests and examples to axum-casbin-auth</h3>
+<p>Used <code>actix-casbin-auth</code> as reference. It had three tests:</p>
+<ul>
+<li>test_middleware.rs: test basic middleware function</li>
+<li>test_middleware_domain.rs: test middleware function with domain</li>
+<li>test_set_enforcer.rs: test initializing middleware using <code>set_enforcer()</code></li>
+</ul>
+<p>We first implement a FakeAuthLayer which is used to insert subject and domain in <code>CasbinVals</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">call</span>(<span style="color:#f92672">&amp;</span>self, req: <span style="color:#a6e22e">ServiceRequest</span>) -&gt; <span style="color:#a6e22e">Self</span>::Future {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">let</span> svc <span style="color:#f92672">=</span> self.service.clone();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Box::pin(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">move</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">let</span> vals <span style="color:#f92672">=</span> CasbinVals {
+</span></span><span style="display:flex;"><span>                subject: String::from(<span style="color:#e6db74">&#34;alice&#34;</span>),
+</span></span><span style="display:flex;"><span>                domain: Option::from(String::from(<span style="color:#e6db74">&#34;domain1&#34;</span>)),
+</span></span><span style="display:flex;"><span>            };
+</span></span><span style="display:flex;"><span>            req.extensions_mut().insert(vals);
+</span></span><span style="display:flex;"><span>            svc.call(req).<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>        })
+</span></span></code></pre></div><p>Endpoints in FakeAuthLayer and Casbin are wrapped using <code>layer</code> in Axum.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> app <span style="color:#f92672">=</span> Router::new()
+</span></span><span style="display:flex;"><span>        .route(<span style="color:#e6db74">&#34;/pen/1&#34;</span>, get(handler))
+</span></span><span style="display:flex;"><span>        .route(<span style="color:#e6db74">&#34;/pen/2&#34;</span>, get(handler))
+</span></span><span style="display:flex;"><span>        .route(<span style="color:#e6db74">&#34;/book/:id&#34;</span>, get(handler))
+</span></span><span style="display:flex;"><span>        .layer(casbin_middleware)
+</span></span><span style="display:flex;"><span>        .layer(FakeAuthLayer);
+</span></span></code></pre></div><p>Axum web framework don&rsquo;t have its own TestClient unlike Poem and actix-web. Hence I had to use <code>axum_test_helper::TestClient</code>.
+Axum test looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> axum::{response::Response, routing::get, BoxError, Router};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">use</span> axum_test_helper::TestClient;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> app <span style="color:#f92672">=</span> Router::new()
+</span></span><span style="display:flex;"><span>        .route(<span style="color:#e6db74">&#34;/pen/1&#34;</span>, get(handler))
+</span></span><span style="display:flex;"><span>        .route(<span style="color:#e6db74">&#34;/pen/2&#34;</span>, get(handler))
+</span></span><span style="display:flex;"><span>        .route(<span style="color:#e6db74">&#34;/book/:id&#34;</span>, get(handler))
+</span></span><span style="display:flex;"><span>        .layer(casbin_middleware) <span style="color:#75715e">// casbin_middleware preceeds FakeAuthLayer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        .layer(FakeAuthLayer);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> client <span style="color:#f92672">=</span> TestClient::new(app);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> resp_pen_1 <span style="color:#f92672">=</span> client.get(<span style="color:#e6db74">&#34;/pen/1&#34;</span>).send().<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>    assert_eq!(resp_pen_1.status(), StatusCode::OK);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> resp_book <span style="color:#f92672">=</span> client.get(<span style="color:#e6db74">&#34;/book/2&#34;</span>).send().<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>    assert_eq!(resp_book.status(), StatusCode::OK);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> resp_pen_2 <span style="color:#f92672">=</span> client.get(<span style="color:#e6db74">&#34;/pen/2&#34;</span>).send().<span style="color:#66d9ef">await</span>;
+</span></span><span style="display:flex;"><span>    assert_eq!(resp_pen_2.status(), StatusCode::FORBIDDEN);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Github repository of axum-casbin-auth can be found <a href="https://github.com/casbin-rs/axum-casbin-auth">here</a></p>
+<h3 id="target-for-next-week">Target for Next week</h3>
+<ol>
+<li>casbin-rs/examples: resolve error due to simultaneous use of <code>tokio</code> and <code>async-std</code> \</li>
+<li>Establish a real world example using axum-casbin-auth.</li>
+</ol>
+
+      </div>
+    </article>
+
+    <hr />
+
+    <div class="post-info">
+      
+      
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        1705 Words
+      </p>
+
+      <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="16" y1="2" x2="16" y2="6"></line>
+          <line x1="8" y1="2" x2="8" y2="6"></line>
+          <line x1="3" y1="10" x2="21" y2="10"></line>
+        </svg>
+        
+          2022-07-10 15:35
+        
+
+         
+          
+        
+      </p>
+    </div>
+      <hr />
+      <div class="sharing-buttons">
+        
+<a class="resp-sharing-button__link" href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_blank" rel="noopener" aria-label="" title="Share on facebook">
+  <div class="resp-sharing-button resp-sharing-button--facebook resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://twitter.com/intent/tweet/?url=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_blank" rel="noopener" aria-label="" title="Share on twitter">
+  <div class="resp-sharing-button resp-sharing-button--twitter resp-sharing-button--small">
+      <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.tumblr.com/widgets/share/tool?posttype=link&amp;title=GSoC%3a%20Week%203%20and%204&amp;caption=GSoC%3a%20Week%203%20and%204&amp;canonicalUrl=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_blank" rel="noopener" aria-label="" title="Share on tumblr">
+  <div class="resp-sharing-button resp-sharing-button--tumblr resp-sharing-button--small">
+    <div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="mailto:?subject=GSoC%3a%20Week%203%20and%204&amp;body=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_self" rel="noopener" aria-label="" title="Share via email">
+  <div class="resp-sharing-button resp-sharing-button--email resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://pinterest.com/pin/create/button/?url=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f&amp;media=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f;description=GSoC%3a%20Week%203%20and%204" target="_blank" rel="noopener" aria-label="" title="Share on pinterest">
+  <div class="resp-sharing-button resp-sharing-button--pinterest resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f&amp;title=GSoC%3a%20Week%203%20and%204&amp;summary=GSoC%3a%20Week%203%20and%204&amp;source=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_blank" rel="noopener" aria-label="" title="Share on linkedin">
+  <div class="resp-sharing-button resp-sharing-button--linkedin resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://reddit.com/submit/?url=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f&amp;resubmit=true&amp;title=GSoC%3a%20Week%203%20and%204" target="_blank" rel="noopener" aria-label="" title="Share on reddit">
+  <div class="resp-sharing-button resp-sharing-button--reddit resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://www.xing.com/app/user?op=share;url=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f;title=GSoC%3a%20Week%203%20and%204" target="_blank" rel="noopener" aria-label="" title="Share on xing">
+  <div class="resp-sharing-button resp-sharing-button--xing resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="whatsapp://send?text=GSoC%3a%20Week%203%20and%204%20https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_blank" rel="noopener" aria-label="" title="Share on whatsapp">
+  <div class="resp-sharing-button resp-sharing-button--whatsapp resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f&amp;t=GSoC%3a%20Week%203%20and%204" target="_blank" rel="noopener" aria-label="" title="Share on hacker news">
+  <div class="resp-sharing-button resp-sharing-button--hackernews resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+    </div>
+  </div>
+</a>
+
+
+<a class="resp-sharing-button__link" href="https://telegram.me/share/url?text=GSoC%3a%20Week%203%20and%204&amp;url=https%3a%2f%2fsiddhesh.github.io%2fposts%2fweek3n4%2f" target="_blank" rel="noopener" aria-label="" title="Share on telegram">
+  <div class="resp-sharing-button resp-sharing-button--telegram resp-sharing-button--small"><div aria-hidden="true" class="resp-sharing-button__icon resp-sharing-button__icon--solid">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+    </div>
+  </div>
+</a>
+
+      </div>
+
+    
+
+    
+
+    
+
+  </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Made with ❤️ by Siddhesh Kanawade</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://siddhesh.github.io/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>
