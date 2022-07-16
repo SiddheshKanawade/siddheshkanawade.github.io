@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on Hello, Siddhesh Kanawade here</title>
-    <link>https://siddhesh.github.io/series/</link>
+    <link>https://siddheshkanawade.github.io/series/</link>
     <description>Recent content in Series on Hello, Siddhesh Kanawade here</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://siddhesh.github.io/series/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://siddheshkanawade.github.io/series/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
