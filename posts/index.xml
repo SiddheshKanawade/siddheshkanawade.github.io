@@ -1,226 +1,363 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Posts on Hello, Siddhesh Kanawade here</title>
-        <link>/siddheshkanawade.github.io/posts/</link>
+        <link>https://siddheshkanawade.github.io/posts/</link>
         <description>Recent content in Posts on Hello, Siddhesh Kanawade here</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Mon, 11 Jul 2022 15:35:40 +0530</lastBuildDate>
-        <atom:link href="/siddheshkanawade.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        <lastBuildDate>Fri, 15 Jul 2022 22:43:56 +0530</lastBuildDate>
+        <atom:link href="https://siddheshkanawade.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
         
         <item>
             <title>GSoC: Week 5</title>
-            <link>/siddheshkanawade.github.io/posts/week5/</link>
-            <pubDate>Mon, 11 Jul 2022 15:35:40 +0530</pubDate>
+            <link>https://siddheshkanawade.github.io/posts/week5/</link>
+            <pubDate>Fri, 15 Jul 2022 22:43:56 +0530</pubDate>
             
-            <guid>/siddheshkanawade.github.io/posts/week5/</guid>
-            <description>Tasks: ✅ casbin-example respository multiple depencies version conflict resolve ✅ Reallife example for Axum middleware
-Workflow Error Compilation
-Tokio reimport error(after resolving error in actix-casbin and actix-casbin-auth):
+            <guid>https://siddheshkanawade.github.io/posts/week5/</guid>
+            <description>Tasks: ✅ casbin-example respository multiple depencies version conflict resolve 🟩 Real-life example for Axum middleware
+Outcomes casbin-example: tokio and async-std conflict resolved fix: Update tokio
+axum-middleware-example: filestructure and initial db implementation
+Workflow casbin-example Tokio reimport error(after resolving error in actix-casbin and actix-casbin-auth):
 error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&amp;gt; /home/siddhesh/.</description>
-            <content type="html"><![CDATA[<h3 id="tasks">Tasks:</h3>
+            <content type="html"><![CDATA[<h2 id="tasks">Tasks:</h2>
 <p>✅ casbin-example respository multiple depencies version conflict resolve <br>
-✅ Reallife example for Axum middleware</p>
-<h3 id="workflow">Workflow</h3>
-<p>Error Compilation</p>
+🟩 Real-life example for Axum middleware</p>
+<h2 id="outcomes">Outcomes</h2>
+<ol>
+<li>
+<p><strong>casbin-example:</strong> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/565baf177a3961ff49f5b8135ad8d211418e7ac0">tokio and async-std conflict resolved</a> <br>
+<a href="https://github.com/casbin-rs/actix-casbin/pull/25">fix: Update tokio</a></p>
+</li>
+<li>
+<p><strong>axum-middleware-example:</strong> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/bcdc9ddd0f32af2b7c36e0267ffb45749e585239">filestructure and initial db implementation</a></p>
+</li>
+</ol>
+<h2 id="workflow">Workflow</h2>
+<h3 id="casbin-example">casbin-example</h3>
 <p>Tokio reimport error(after resolving error in actix-casbin and actix-casbin-auth):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">10</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span>     io::{BufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                     <span style="color:#f92672">----------------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">|</span>     io::{Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>          <span style="color:#f92672">^^^^^^^^^^^^^^^^--</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>          <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>          <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>          help: <span style="color:#a6e22e">remove</span> unnecessary import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
+<pre tabindex="0"><code class="language-error" data-lang="error">error[E0252]: the name `IoError` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10
+   |
+13 |     io::{BufReader, Error as IoError, ErrorKind},
+   |                     ---------------- previous import of the type `IoError` here
+...
+20 |     io::{Error as IoError, ErrorKind},
+   |          ^^^^^^^^^^^^^^^^--
+   |          |
+   |          `IoError` reimported here
+   |          help: remove unnecessary import
+   |
+   = note: `IoError` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `ErrorKind` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:28
+   |
+13 |     io::{BufReader, Error as IoError, ErrorKind},
+   |                                       --------- previous import of the type `ErrorKind` here
+...
+20 |     io::{Error as IoError, ErrorKind},
+   |                            ^^^^^^^^^ `ErrorKind` reimported here
+   |
+   = note: `ErrorKind` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `Path` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:21:5
+   |
+14 |     path::Path,
+   |     ---------- previous import of the type `Path` here
+...
+21 |     path::Path,
+   |     ^^^^^^^^^^ `Path` reimported here
+   |
+   = note: `Path` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+21 |     path::Path as OtherPath,
+   |     ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `File` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:25:5
+   |
+11 |     fs::File,
+   |     -------- previous import of the type `File` here
+...
+25 |     fs::File,
+   |     ^^^^^^^^ `File` reimported here
+   |
+   = note: `File` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+25 |     fs::File as OtherFile,
+   |     ~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `BufReader` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:26:42
+   |
+13 |     io::{BufReader, Error as IoError, ErrorKind},
+   |          --------- previous import of the type `BufReader` here
+...
+26 |     io::{AsyncBufReadExt, AsyncWriteExt, BufReader},
+   |                                          ^^^^^^^^^ `BufReader` reimported here
+   |
+   = note: `BufReader` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+26 |     io::{AsyncBufReadExt, AsyncWriteExt, BufReader as OtherBufReader},
+   |                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `Cursor` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:13:11
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |                     ------ previous import of the type `Cursor` here
+...
+13 | use std::{io::Cursor, path::Path};
+   |           ^^^^^^^^^^ `Cursor` reimported here
+   |
+   = note: `Cursor` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+13 | use std::{io::Cursor as OtherCursor, path::Path};
+   |           ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `Path` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:13:23
+   |
+10 | use async_std::{fs::File, path::Path};
+   |                           ---------- previous import of the type `Path` here
+...
+13 | use std::{io::Cursor, path::Path};
+   |                       ^^^^^^^^^^ `Path` reimported here
+   |
+   = note: `Path` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+13 | use std::{io::Cursor, path::Path as OtherPath};
+   |                       ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `BufReader` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:16:36
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |          --------- previous import of the type `BufReader` here
+...
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader, Error as IoError, ErrorKind,
+   |                                    ^^^^^^^^^ `BufReader` reimported here
+   |
+   = note: `BufReader` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader as OtherBufReader, Error as IoError, ErrorKind,
+   |                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `IoError` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:16:47
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |                             ---------------- previous import of the type `IoError` here
+...
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader, Error as IoError, ErrorKind,
+   |                                               ^^^^^^^^^^^^^^^^--
+   |                                               |
+   |                                               `IoError` reimported here
+   |                                               help: remove unnecessary import
+   |
+   = note: `IoError` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `ErrorKind` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:16:65
+   |
+6  |     io::{BufReader, Cursor, Error as IoError, ErrorKind},
+   |                                               --------- previous import of the type `ErrorKind` here
+...
+16 |     AsyncBufReadExt, AsyncReadExt, BufReader, Error as IoError, ErrorKind,
+   |                                                                 ^^^^^^^^^-
+   |                                                                 |
+   |                                                                 `ErrorKind` reimported here
+   |                                                                 help: remove unnecessary import
+   |
+   = note: `ErrorKind` must be defined only once in the type namespace of this module
+
+error[E0252]: the name `File` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/config.rs:20:5
+   |
+10 | use async_std::{fs::File, path::Path};
+   |                 -------- previous import of the type `File` here
+...
+20 | use tokio::fs::File;
+   |     ^^^^^^^^^^^^^^^ `File` reimported here
+   |
+   = note: `File` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+20 | use tokio::fs::File as OtherFile;
+   |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0252]: the name `Path` is defined multiple times
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/model/default_model.rs:20:5
+   |
+17 | use async_std::path::Path;
+   |     --------------------- previous import of the type `Path` here
+...
+20 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^ `Path` reimported here
+   |
+   = note: `Path` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+20 | use std::path::Path as OtherPath;
+   |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0599]: no method named `next_line` found for struct `async_std::io::Lines` in the current scope
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:66:38
+   |
+66 |         while let Some(line) = lines.next_line().await? {
+   |                                      ^^^^^^^^^ method not found in `async_std::io::Lines&lt;async_std::io::BufReader&lt;async_std::fs::File&gt;&gt;`
+
+error[E0599]: no method named `next_line` found for struct `async_std::io::Lines` in the current scope
+  --&gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:91:38
+   |
+91 |         while let Some(line) = lines.next_line().await? {
+   |                                      ^^^^^^^^^ method not found in `async_std::io::Lines&lt;async_std::io::BufReader&lt;async_std::fs::File&gt;&gt;`
+
+Some errors have detailed explanations: E0252, E0599.
+For more information about an error, try `rustc --explain E0252`.
+error: could not compile `casbin` due to 14 previous errors
+</code></pre><p>After ensuring the build compiles in the individual directories in the casbin-rs/examples, the next task in the line was to ensure that the main workspace compile successfully. From the error console it was not clear what was exactly causing the error. I figured out that the error was due to the simultanous usage of <code>tokio</code> and <code>async-std</code> feature of casbin with the help of tokio community. Initially I tried to enable async-std feature and disable tokio since there was reimport of tokio. But since actix uses tokio, there was still import of the tokio. Hence I had to enable <code>tokio-runtime</code> and disable <code>async-std-runtimes</code>.</p>
+<p>Following error was encountered after resolving the above conflict:</p>
+<p><img src="/img/week3n4/actixdep.png" alt="Image alt"></p>
+<p><code>actix-casbin</code> had deprecated version of tokio which was causing different versions of tokio and hence had to update it. Opened a PR to do so.</p>
+<h3 id="axum-middleware-example">axum-middleware-example</h3>
+<p>The next task in list was to develop a real-life example using <code>axum-casbin-auth</code>. I had <code>actix-middleware-example</code> developed by Eason Chai for reference. I did some research and found following example good enough to be reproduced in Rust.</p>
+<p><a href="https://medium.com/wesionary-team/authorization-in-golang-projects-using-casbin-f8fad744dae5">Authorization in Golang Projects using Casbin</a></p>
+<p>I will aim to make a example capable of doing simple CRUD operations on backend.</p>
+<ol>
+<li>Backend: <code>Postgres</code></li>
+<li><code>diesel</code> to access backend.</li>
+</ol>
+<p><strong>What will app do:</strong>  I aim to have a basic application based on RBAC model. I will group users into two groups: <code>doctor</code> and <code>patient</code>. As obvious it sounds, doctor will have priveledged permissions than patient.</p>
+<p>The <code>rbac.conf</code> looks like:</p>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">[request_definition]
+ r = sub, obj, act
+
+ [policy_definition]
+ p = sub, obj, act
+
+ [role_definition]
+ g = _, _
+
+ [policy_effect]
+ e = some(where (p.eft == allow))
+
+ [matchers]
+ m = g(r.sub, p.sub) &amp;&amp; r.obj == p.obj &amp;&amp; r.act == p.act 
+</code></pre><p>The application will match the permissions from frontend to backend and will respond with appropriate response. The identification would be done via email and password.</p>
+<p>The user model looks like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#75715e">#[derive(Debug, Serialize, Deserialize, Queryable)]</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">#[diesel(table_name = users)]</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">pub</span> id: <span style="color:#66d9ef">i32</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">pub</span> username: String,
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">pub</span> email: String,
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">pub</span> password: String,
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">pub</span> role: String,
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>In this week I aimed at creating a Database, a basic filestructure, and add code templates. Following are few examples:</p>
+<p>bcrypt.rs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">use</span> <span style="color:#66d9ef">crate</span>::constants;
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">use</span> bcrypt::{hash, verify, DEFAULT_COST};
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">use</span> std::env;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">28</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span>     io::{BufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                       <span style="color:#f92672">---------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">|</span>     io::{Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                            <span style="color:#f92672">^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">hash_password</span>() {}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">21</span>:<span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span>     path::Path,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">----------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">21</span> <span style="color:#f92672">|</span>     path::Path,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">^^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">21</span> <span style="color:#f92672">|</span>     path::Path <span style="color:#66d9ef">as</span> OtherPath,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">compare_password</span>() {}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span>     fs::File,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">--------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span> <span style="color:#f92672">|</span>     fs::File,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">25</span> <span style="color:#f92672">|</span>     fs::File <span style="color:#66d9ef">as</span> OtherFile,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">generate_token</span>() {}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">26</span>:<span style="color:#ae81ff">42</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span>     io::{BufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>          <span style="color:#f92672">---------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">26</span> <span style="color:#f92672">|</span>     io::{AsyncBufReadExt, AsyncWriteExt, BufReader},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                          <span style="color:#f92672">^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">26</span> <span style="color:#f92672">|</span>     io::{AsyncBufReadExt, AsyncWriteExt, BufReader <span style="color:#66d9ef">as</span> OtherBufReader},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                          <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">validate_token</span>() {}
+</span></span></code></pre></div><p>auth.rs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span>S, ReqBody, ResBody<span style="color:#f92672">&gt;</span> Service<span style="color:#f92672">&lt;</span>Request<span style="color:#f92672">&lt;</span>ReqBody<span style="color:#f92672">&gt;&gt;</span> <span style="color:#66d9ef">for</span> AuthMiddleware<span style="color:#f92672">&lt;</span>S<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>     S: <span style="color:#a6e22e">Service</span><span style="color:#f92672">&lt;</span>Request<span style="color:#f92672">&lt;</span>ReqBody<span style="color:#f92672">&gt;</span>, Response <span style="color:#f92672">=</span> Response<span style="color:#f92672">&lt;</span>ResBody<span style="color:#f92672">&gt;</span>, Error <span style="color:#f92672">=</span> Infallible<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">+</span> Clone
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">+</span> Send
+</span></span><span style="display:flex;"><span>         <span style="color:#f92672">+</span> <span style="color:#f92672">&#39;</span>static,
+</span></span><span style="display:flex;"><span>     S::Future: Send <span style="color:#f92672">+</span> <span style="color:#f92672">&#39;</span>static,
+</span></span><span style="display:flex;"><span>     ReqBody: Send <span style="color:#f92672">+</span> <span style="color:#f92672">&#39;</span>static,
+</span></span><span style="display:flex;"><span>     Infallible: From<span style="color:#f92672">&lt;&lt;</span>S <span style="color:#66d9ef">as</span> Service<span style="color:#f92672">&lt;</span>Request<span style="color:#f92672">&lt;</span>ReqBody<span style="color:#f92672">&gt;&gt;&gt;</span>::Error<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>     ResBody: <span style="color:#a6e22e">HttpBody</span><span style="color:#f92672">&lt;</span>Data <span style="color:#f92672">=</span> Bytes<span style="color:#f92672">&gt;</span> <span style="color:#f92672">+</span> Send <span style="color:#f92672">+</span> <span style="color:#f92672">&#39;</span>static,
+</span></span><span style="display:flex;"><span>     ResBody::Error: Into<span style="color:#f92672">&lt;</span>BoxError<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Response</span> <span style="color:#f92672">=</span> S::Response;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Error</span> <span style="color:#f92672">=</span> S::Error;
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">// `BoxFuture` is a type alias for `Pin&lt;Box&lt;dyn Future + Send + &#39;a&gt;&gt;`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Future</span> <span style="color:#f92672">=</span> BoxFuture<span style="color:#f92672">&lt;&#39;</span>static, Result<span style="color:#f92672">&lt;</span>Self::Response, Self::Error<span style="color:#f92672">&gt;&gt;</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>Cursor<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>config.rs:<span style="color:#ae81ff">13</span>:<span style="color:#ae81ff">11</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>  <span style="color:#f92672">|</span>     io::{BufReader, Cursor, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                     <span style="color:#f92672">------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>Cursor<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> std::{io::Cursor, path::Path};
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>           <span style="color:#f92672">^^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>Cursor<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>Cursor<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> std::{io::Cursor <span style="color:#66d9ef">as</span> OtherCursor, path::Path};
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>           <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">poll_ready</span>(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> self, cx: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> Context<span style="color:#f92672">&lt;&#39;</span>_<span style="color:#f92672">&gt;</span>) -&gt; <span style="color:#a6e22e">Poll</span><span style="color:#f92672">&lt;</span>Result<span style="color:#f92672">&lt;</span>(), Self::Error<span style="color:#f92672">&gt;&gt;</span> {
+</span></span><span style="display:flex;"><span>         self.inner.poll_ready(cx)
+</span></span><span style="display:flex;"><span>     }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>config.rs:<span style="color:#ae81ff">13</span>:<span style="color:#ae81ff">23</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> async_std::{fs::File, path::Path};
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                           <span style="color:#f92672">----------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> std::{io::Cursor, path::Path};
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                       <span style="color:#f92672">^^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">13</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> std::{io::Cursor, path::Path <span style="color:#66d9ef">as</span> OtherPath};
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                       <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">call</span>(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> self, <span style="color:#66d9ef">mut</span> req: <span style="color:#a6e22e">Request</span><span style="color:#f92672">&lt;</span>ReqBody<span style="color:#f92672">&gt;</span>) -&gt; <span style="color:#a6e22e">Self</span>::Future {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">let</span> not_ready_inner <span style="color:#f92672">=</span> self.inner.clone();
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> inner <span style="color:#f92672">=</span> std::mem::replace(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> self.inner, not_ready_inner);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>config.rs:<span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">36</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>  <span style="color:#f92672">|</span>     io::{BufReader, Cursor, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>          <span style="color:#f92672">---------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#f92672">|</span>     AsyncBufReadExt, AsyncReadExt, BufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                    <span style="color:#f92672">^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>BufReader<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#f92672">|</span>     AsyncBufReadExt, AsyncReadExt, BufReader <span style="color:#66d9ef">as</span> OtherBufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                    <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">// IMPLEMENT LOGIC HERE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>         Box::pin(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">move</span> {
+</span></span><span style="display:flex;"><span>             inner.call(req).<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>         })
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>After setting up the user model run the <code>diesel migration generate users</code> command to generate the <code>migrations</code> file for our database. Setup the database structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> users
+</span></span><span style="display:flex;"><span> (
+</span></span><span style="display:flex;"><span>     id         SERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
+</span></span><span style="display:flex;"><span>     username   VARCHAR(<span style="color:#ae81ff">32</span>)  <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>     email      VARCHAR(<span style="color:#ae81ff">100</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>     password   VARCHAR(<span style="color:#ae81ff">200</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">role</span>       VARCHAR(<span style="color:#ae81ff">32</span>)  <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>
+</span></span><span style="display:flex;"><span> );
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>config.rs:<span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">47</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>  <span style="color:#f92672">|</span>     io::{BufReader, Cursor, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                             <span style="color:#f92672">----------------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#f92672">|</span>     AsyncBufReadExt, AsyncReadExt, BufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                               <span style="color:#f92672">^^^^^^^^^^^^^^^^--</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                               <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                               <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                               help: <span style="color:#a6e22e">remove</span> unnecessary import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>IoError<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> users
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#39;John&#39;</span>, <span style="color:#e6db74">&#39;john@john.com&#39;</span>, <span style="color:#e6db74">&#39;imjohn&#39;</span>, <span style="color:#e6db74">&#39;doctor&#39;</span>);
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> users
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">VALUES</span> (<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#39;Sam&#39;</span>, <span style="color:#e6db74">&#39;sam@sam.com&#39;</span>, <span style="color:#e6db74">&#39;imsam&#39;</span>, <span style="color:#e6db74">&#39;patient&#39;</span>);
+</span></span></code></pre></div><p><code>diesel migration run</code> to generate the schema.rs file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>table<span style="color:#f92672">!</span> {
+</span></span><span style="display:flex;"><span>     users (id) {
+</span></span><span style="display:flex;"><span>         id -&gt; <span style="color:#a6e22e">Int4</span>,
+</span></span><span style="display:flex;"><span>         username -&gt; <span style="color:#a6e22e">Varchar</span>,
+</span></span><span style="display:flex;"><span>         email -&gt; <span style="color:#a6e22e">Varchar</span>,
+</span></span><span style="display:flex;"><span>         password -&gt; <span style="color:#a6e22e">Varchar</span>,
+</span></span><span style="display:flex;"><span>         role -&gt; <span style="color:#a6e22e">Varchar</span>,
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>Next we will connect database with out project, for this add following <code>.env</code> file:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-env" data-lang="env"><span style="display:flex;"><span>APP_HOST<span style="color:#f92672">=</span>127.0.0.1
+</span></span><span style="display:flex;"><span>APP_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>DATABASE_URL<span style="color:#f92672">=</span>postgres://postgres:postgresAdmin@127.0.0.1:5432/casbintest
+</span></span><span style="display:flex;"><span>POOL_SIZE<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>HASH_ROUNDS<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>
+</span></span></code></pre></div><p>Connect database with project:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">establish_connection</span>() -&gt; <span style="color:#a6e22e">PgConnection</span> {
+</span></span><span style="display:flex;"><span>     dotenv().ok();
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>config.rs:<span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">65</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">6</span>  <span style="color:#f92672">|</span>     io::{BufReader, Cursor, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind},
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                               <span style="color:#f92672">---------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">16</span> <span style="color:#f92672">|</span>     AsyncBufReadExt, AsyncReadExt, BufReader, Error <span style="color:#66d9ef">as</span> IoError, ErrorKind,
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                                                 <span style="color:#f92672">^^^^^^^^^-</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                                                 <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                                                 <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                                                 help: <span style="color:#a6e22e">remove</span> unnecessary import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>ErrorKind<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>config.rs:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> async_std::{fs::File, path::Path};
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                 <span style="color:#f92672">--------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> tokio::fs::File;
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">^^^^^^^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>File<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> tokio::fs::File <span style="color:#66d9ef">as</span> OtherFile;
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0252]: <span style="color:#a6e22e">the</span> name <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> is defined multiple times
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>model<span style="color:#f92672">/</span>default_model.rs:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">17</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> async_std::path::Path;
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">---------------------</span> previous import of the <span style="color:#66d9ef">type</span> <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> here
-</span></span><span style="display:flex;"><span><span style="color:#f92672">..</span>.
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> std::path::Path;
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">^^^^^^^^^^^^^^^</span> <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> reimported here
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">=</span> note: <span style="color:#960050;background-color:#1e0010">`</span>Path<span style="color:#960050;background-color:#1e0010">`</span> must be defined only once <span style="color:#66d9ef">in</span> the <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">namespace</span> of this module
-</span></span><span style="display:flex;"><span>help: <span style="color:#a6e22e">you</span> can <span style="color:#66d9ef">use</span> <span style="color:#960050;background-color:#1e0010">`</span><span style="color:#66d9ef">as</span><span style="color:#960050;background-color:#1e0010">`</span> to change the binding name of the import
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">20</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">use</span> std::path::Path <span style="color:#66d9ef">as</span> OtherPath;
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>     <span style="color:#f92672">~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0599]: <span style="color:#a6e22e">no</span> method named <span style="color:#960050;background-color:#1e0010">`</span>next_line<span style="color:#960050;background-color:#1e0010">`</span> found <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">`</span>async_std::io::Lines<span style="color:#960050;background-color:#1e0010">`</span> <span style="color:#66d9ef">in</span> the current scope
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">66</span>:<span style="color:#ae81ff">38</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">66</span> <span style="color:#f92672">|</span>         <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(line) <span style="color:#f92672">=</span> lines.next_line().<span style="color:#66d9ef">await</span><span style="color:#f92672">?</span> {
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                      <span style="color:#f92672">^^^^^^^^^</span> method not found <span style="color:#66d9ef">in</span> <span style="color:#960050;background-color:#1e0010">`</span>async_std::io::Lines<span style="color:#f92672">&lt;</span>async_std::io::BufReader<span style="color:#f92672">&lt;</span>async_std::fs::File<span style="color:#f92672">&gt;&gt;</span><span style="color:#960050;background-color:#1e0010">`</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>error[E0599]: <span style="color:#a6e22e">no</span> method named <span style="color:#960050;background-color:#1e0010">`</span>next_line<span style="color:#960050;background-color:#1e0010">`</span> found <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">struct</span> <span style="color:#960050;background-color:#1e0010">`</span>async_std::io::Lines<span style="color:#960050;background-color:#1e0010">`</span> <span style="color:#66d9ef">in</span> the current scope
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>siddhesh<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>casbin<span style="color:#f92672">-</span><span style="color:#ae81ff">2.0.9</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>adapter<span style="color:#f92672">/</span>file_adapter.rs:<span style="color:#ae81ff">91</span>:<span style="color:#ae81ff">38</span>
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">91</span> <span style="color:#f92672">|</span>         <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(line) <span style="color:#f92672">=</span> lines.next_line().<span style="color:#66d9ef">await</span><span style="color:#f92672">?</span> {
-</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                                      <span style="color:#f92672">^^^^^^^^^</span> method not found <span style="color:#66d9ef">in</span> <span style="color:#960050;background-color:#1e0010">`</span>async_std::io::Lines<span style="color:#f92672">&lt;</span>async_std::io::BufReader<span style="color:#f92672">&lt;</span>async_std::fs::File<span style="color:#f92672">&gt;&gt;</span><span style="color:#960050;background-color:#1e0010">`</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Some errors have detailed explanations: <span style="color:#a6e22e">E0252</span>, E0599.
-</span></span><span style="display:flex;"><span>For more information about an error, <span style="color:#66d9ef">try</span> <span style="color:#960050;background-color:#1e0010">`</span>rustc <span style="color:#f92672">--</span>explain E0252<span style="color:#960050;background-color:#1e0010">`</span>.
-</span></span><span style="display:flex;"><span>error: <span style="color:#a6e22e">could</span> not compile <span style="color:#960050;background-color:#1e0010">`</span>casbin<span style="color:#960050;background-color:#1e0010">`</span> due to <span style="color:#ae81ff">14</span> previous errors
-</span></span></code></pre></div>]]></content>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> database_url <span style="color:#f92672">=</span> env::var(<span style="color:#e6db74">&#34;DATABASE_URL&#34;</span>).expect(<span style="color:#e6db74">&#34;DATABASE_URL must be set&#34;</span>);
+</span></span><span style="display:flex;"><span>     PgConnection::establish(<span style="color:#f92672">&amp;</span>database_url)
+</span></span><span style="display:flex;"><span>         .expect(<span style="color:#f92672">&amp;</span>format!(<span style="color:#e6db74">&#34;Error connecting to {}&#34;</span>, database_url))
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>Now load the data from the project to database. Will do this in main.rs. After successful setup of the database, we get the following output:</p>
+<p><img src="/img/week5/database.png" alt="Image alt"></p>
+]]></content>
         </item>
         
         <item>
             <title>GSoC: Week 1 and 2</title>
-            <link>/siddheshkanawade.github.io/posts/week1n2/</link>
+            <link>https://siddheshkanawade.github.io/posts/week1n2/</link>
             <pubDate>Sun, 10 Jul 2022 15:35:40 +0530</pubDate>
             
-            <guid>/siddheshkanawade.github.io/posts/week1n2/</guid>
+            <guid>https://siddheshkanawade.github.io/posts/week1n2/</guid>
             <description>Tasks: ❎ casbin-grpc respository maintainence ✅ Integrate Axum middleware with Casbin
 Workflow Casbin is provide support to Actix, Actix Web and Rocket middleware. I was assigned to</description>
             <content type="html"><![CDATA[<h3 id="tasks">Tasks:</h3>
@@ -233,17 +370,37 @@ Workflow Casbin is provide support to Actix, Actix Web and Rocket middleware. I 
         
         <item>
             <title>GSoC: Week 3 and 4</title>
-            <link>/siddheshkanawade.github.io/posts/week3n4/</link>
+            <link>https://siddheshkanawade.github.io/posts/week3n4/</link>
             <pubDate>Sun, 10 Jul 2022 15:35:40 +0530</pubDate>
             
-            <guid>/siddheshkanawade.github.io/posts/week3n4/</guid>
+            <guid>https://siddheshkanawade.github.io/posts/week3n4/</guid>
             <description>Tasks: ✅ casbin-rs/example respository maintainence ✅ Add CI to axum middleware ✅ Add tests and examples to axum-casbin-auth
+Outcomes casbin-rs/example: actix-fileadapter-rbac, actix-pgsql-simple, ntex-fileadapter-acl error resolved ntex-fileadapter-acl build success actix-middleware-example
+Add CI in axum middleware: added workflow
+Add tests and examples to axum-casbin-auth: added tests/examples for axum-casbin-auth
 Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
-error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&amp;gt; /Users/macbookair/.</description>
-            <content type="html"><![CDATA[<h3 id="tasks">Tasks:</h3>
+error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /Users/macbookair/.</description>
+            <content type="html"><![CDATA[<h2 id="tasks">Tasks:</h2>
 <p>✅ casbin-rs/example respository maintainence <br>
 ✅ Add CI to axum middleware <br>
 ✅ Add tests and examples to axum-casbin-auth</p>
+<h2 id="outcomes">Outcomes</h2>
+<ol>
+<li>
+<p><strong>casbin-rs/example:</strong> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/bd7097eae46694238750bf4abddfa9de5caf8134">actix-fileadapter-rbac, actix-pgsql-simple, ntex-fileadapter-acl error resolved</a> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/10069e0ddcde004c0a0916d4cf4944b8e8552fb6">ntex-fileadapter-acl build success</a> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/9dc325b5867cb9bfda1948abdd14bccc67f926f7">actix-middleware-example</a></p>
+</li>
+<li>
+<p><strong>Add CI in axum middleware:</strong> <br>
+<a href="https://github.com/casbin-rs/axum-casbin-auth/pull/1/commits/3d9b95ab9f6874373bebdff563553a6b4b8e36c5">added workflow</a></p>
+</li>
+<li>
+<p><strong>Add tests and examples to axum-casbin-auth</strong>: <br>
+<a href="https://github.com/casbin-rs/axum-casbin-auth/pull/1/commits/4205eace8d503288503cead976683daff7c4c3cb">added tests/examples for axum-casbin-auth</a></p>
+</li>
+</ol>
 <h2 id="workflow">Workflow</h2>
 <h3 id="casbin-rsexamples">Casbin-rs/examples</h3>
 <p>The repository had the following set of errors when ran for the first time:</p>
@@ -529,6 +686,44 @@ error: could not compile `ntex` due to 7 previous errors
    |              ^^^^^^^^ method not found in `App&lt;ntex::service::Identity, web::app::Filter&lt;DefaultError&gt;&gt;`
 </code></pre><p>This is due to the version upgrade of ntex, resolve can be found <a href="https://github.com/casbin-rs/examples/pull/72/files#diff-63e997272b56167db79065780451a949630a1e40df2a762b297774fd2112769dL8">here</a></p>
 <h4 id="actix-middleware-example">actix-middleware-example</h4>
+<p>On updating the actix-web and actix-rt versions, we get the following error:</p>
+<pre tabindex="0"><code class="language-error" data-lang="error">error[E0277]: the trait bound `CasbinActor&lt;CachedEnforcer&gt;: Actor` is not satisfied
+  --&gt; actix-middleware-example/src/api/user.rs:34:22
+   |
+34 |     actor: web::Data&lt;Addr&lt;CasbinActor&lt;CachedEnforcer&gt;&gt;&gt;,
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Actor` is not implemented for `CasbinActor&lt;CachedEnforcer&gt;`
+   |
+   = help: the following other types implement trait `Actor`:
+             Mocker&lt;T&gt;
+             SyncArbiter&lt;A&gt;
+note: required by a bound in `Addr`
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-0.11.1/src/address/mod.rs:77:20
+   |
+77 | pub struct Addr&lt;A: Actor&gt; {
+   |                    ^^^^^ required by this bound in `Addr`
+
+error[E0277]: the trait bound `CasbinActor&lt;CachedEnforcer&gt;: Actor` is not satisfied
+  --&gt; actix-middleware-example/src/services/account_service.rs:24:22
+   |
+24 |     actor: web::Data&lt;Addr&lt;CasbinActor&lt;CachedEnforcer&gt;&gt;&gt;,
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Actor` is not implemented for `CasbinActor&lt;CachedEnforcer&gt;`
+   |
+   = help: the following other types implement trait `Actor`:
+             Mocker&lt;T&gt;
+             SyncArbiter&lt;A&gt;
+note: required by a bound in `Addr`
+  --&gt; /Users/macbookair/.cargo/registry/src/github.com-1ecc6299db9ec823/actix-0.11.1/src/address/mod.rs:77:20
+   |
+77 | pub struct Addr&lt;A: Actor&gt; {
+   |                    ^^^^^ required by this bound in `Addr`
+
+For more information about this error, try `rustc --explain E0277`.
+error: could not compile `actix-middleware-example` due to 3 previous errors
+</code></pre><p>The cargo fetches the dependency versions from the crates.io. Since the actix-casbin-auth and actix-casbin are not released in a while, hence there are two versions of some depedencies(one from actix-casbin-auth/actix-casbin and other from the Cargo.toml). Following are some examples:</p>
+<p><img src="/img/week3n4/actix.png" alt="Image alt"></p>
+<p><img src="/img/week3n4/actix-rt.png" alt="Image alt"></p>
+<p><img src="/img/week3n4/tokio.png" alt="Image alt"></p>
+<p>Overriding the dependencies resolved the version conflicts. I encountered some errors due to upgrade in the version of the dependencies but those were resolved after refering to official documents and some github discussions.</p>
 <h3 id="ci-for-axum-middleware">CI for Axum middleware</h3>
 <p>Adding CI to enable github actions was the next task after adding the core code for the Axum middleware. I had <code>actix-casbin-auth</code> for reference and following commands were included in the CI.yml</p>
 <ul>
