@@ -27,7 +27,7 @@ error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /home/sidd
       
       <guid>https://siddheshkanawade.github.io/posts/week1n2/</guid>
       <description>Tasks: ❎ casbin-grpc respository maintainence ✅ Integrate Axum middleware with Casbin
-Workflow Casbin is provide support to Actix, Actix Web and Rocket middleware. I was assigned to</description>
+Workflow </description>
     </item>
     
     <item>
@@ -42,6 +42,15 @@ Add CI in axum middleware: added workflow
 Add tests and examples to axum-casbin-auth: added tests/examples for axum-casbin-auth
 Workflow Casbin-rs/examples The repository had the following set of errors when ran for the first time:
 error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /Users/macbookair/.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://siddheshkanawade.github.io/about/</link>
+      <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/about/</guid>
+      <description>I am Siddhesh Kanawade, a undergraduate in the discipline of Electrical Engineering at IIT Gandhinagar with minors in Computer Science. Over time, I have developed a particular curiosity in cloud, application development and web security. I am constantly trying to expand my knowledge through online courses and projects. I also deeply enjoy designing and led a team of 15 students for Amalthea, IIT Gandhinagar’s technical summit. To sum it up, I am a tech enthusiast who is eager to learn and contribute to our collective growth.</description>
     </item>
     
   </channel>

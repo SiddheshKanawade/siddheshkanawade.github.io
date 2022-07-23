@@ -359,12 +359,11 @@ error: could not compile `casbin` due to 14 previous errors
             
             <guid>https://siddheshkanawade.github.io/posts/week1n2/</guid>
             <description>Tasks: ❎ casbin-grpc respository maintainence ✅ Integrate Axum middleware with Casbin
-Workflow Casbin is provide support to Actix, Actix Web and Rocket middleware. I was assigned to</description>
+Workflow </description>
             <content type="html"><![CDATA[<h3 id="tasks">Tasks:</h3>
 <p>❎ casbin-grpc respository maintainence <br>
 ✅ Integrate Axum middleware with Casbin</p>
 <h3 id="workflow">Workflow</h3>
-<p>Casbin is provide support to Actix, Actix Web and Rocket middleware. I was assigned to</p>
 ]]></content>
         </item>
         
