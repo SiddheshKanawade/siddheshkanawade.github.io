@@ -6,7 +6,21 @@
     <description>Recent content on Hello, Siddhesh Kanawade here</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 15 Jul 2022 22:43:56 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 24 Jul 2022 23:57:50 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GSoC: Week 6</title>
+      <link>https://siddheshkanawade.github.io/posts/week6/</link>
+      <pubDate>Sun, 24 Jul 2022 23:57:50 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/posts/week6/</guid>
+      <description>Tasks: 🟩 Axum real-world example.
+Outcomes axum-middleware-example
+utils, user model, user service
+Workflow Define Errors, ResponseBody and constants, into response
+Define Service Error, Response Body and Constant messages After refering to actix-middleware-example developed by Eason Chai, I understood the basic workflow and skeleton of the example. I too defined a Service Error, one similar in actix-middleware-example to generalise the error and error response.
+pub struct ServiceError { pub http_status: StatusCode, pub body: ResponseBody&amp;lt;String&amp;gt;, } impl ServiceError { pub fn new(http_status: StatusCode, message: String) -&amp;gt; ServiceError { ServiceError { http_status, body: ResponseBody { message, data: String::new(), }, } } pub fn response(&amp;amp;self) -&amp;gt; http::Result&amp;lt;Response&amp;lt;&amp;amp;ResponseBody&amp;lt;String&amp;gt;&amp;gt;&amp;gt; { Response::builder().</description>
+    </item>
+    
     <item>
       <title>GSoC: Week 5</title>
       <link>https://siddheshkanawade.github.io/posts/week5/</link>
@@ -18,16 +32,6 @@ Outcomes casbin-example: tokio and async-std conflict resolved fix: Update tokio
 axum-middleware-example: filestructure and initial db implementation
 Workflow casbin-example Tokio reimport error(after resolving error in actix-casbin and actix-casbin-auth):
 error[E0252]: the name `IoError` is defined multiple times --&amp;gt; /home/siddhesh/.cargo/registry/src/github.com-1ecc6299db9ec823/casbin-2.0.9/src/adapter/file_adapter.rs:20:10 | 13 | io::{BufReader, Error as IoError, ErrorKind}, | ---------------- previous import of the type `IoError` here ... 20 | io::{Error as IoError, ErrorKind}, | ^^^^^^^^^^^^^^^^-- | | | `IoError` reimported here | help: remove unnecessary import | = note: `IoError` must be defined only once in the type namespace of this module error[E0252]: the name `ErrorKind` is defined multiple times --&amp;gt; /home/siddhesh/.</description>
-    </item>
-    
-    <item>
-      <title>GSoC: Week 1 and 2</title>
-      <link>https://siddheshkanawade.github.io/posts/week1n2/</link>
-      <pubDate>Sun, 10 Jul 2022 15:35:40 +0530</pubDate>
-      
-      <guid>https://siddheshkanawade.github.io/posts/week1n2/</guid>
-      <description>Tasks: ❎ casbin-grpc respository maintainence ✅ Integrate Axum middleware with Casbin
-Workflow </description>
     </item>
     
     <item>
