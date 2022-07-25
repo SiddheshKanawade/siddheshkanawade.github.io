@@ -17,8 +17,7 @@
             <description>Tasks: 🟩 Axum real-world example.
 Outcomes axum-middleware-example
 utils, user model, user service
-Workflow Define Errors, ResponseBody and constants, into response
-Define Service Error, Response Body and Constant messages After refering to actix-middleware-example developed by Eason Chai, I understood the basic workflow and skeleton of the example. I too defined a Service Error, one similar in actix-middleware-example to generalise the error and error response.
+Workflow Define Service Error, Response Body and Constant messages After refering to actix-middleware-example developed by Eason Chai, I understood the basic workflow and skeleton of the example. I too defined a Service Error, one similar in actix-middleware-example to generalise the error and error response.
 pub struct ServiceError { pub http_status: StatusCode, pub body: ResponseBody&amp;lt;String&amp;gt;, } impl ServiceError { pub fn new(http_status: StatusCode, message: String) -&amp;gt; ServiceError { ServiceError { http_status, body: ResponseBody { message, data: String::new(), }, } } pub fn response(&amp;amp;self) -&amp;gt; http::Result&amp;lt;Response&amp;lt;&amp;amp;ResponseBody&amp;lt;String&amp;gt;&amp;gt;&amp;gt; { Response::builder().</description>
             <content type="html"><![CDATA[<h2 id="tasks">Tasks:</h2>
 <p>🟩 Axum real-world example.</p>
@@ -26,7 +25,6 @@ pub struct ServiceError { pub http_status: StatusCode, pub body: ResponseBody&am
 <p><strong>axum-middleware-example</strong><br>
 <a href="https://github.com/casbin-rs/examples/pull/72/commits/2a3f49aa9040e44a28c016d902abf4b5b3c281a3">utils, user model, user service</a></p>
 <h2 id="workflow">Workflow</h2>
-<p>Define Errors, ResponseBody and constants, into response</p>
 <h3 id="define-service-error-response-body-and-constant-messages">Define Service Error, Response Body and Constant messages</h3>
 <p>After refering to actix-middleware-example developed by Eason Chai, I understood the basic workflow and skeleton of the example. I too defined a Service Error, one similar in actix-middleware-example to generalise the error and error response.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ServiceError</span> {

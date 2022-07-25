@@ -16,8 +16,7 @@
       <description>Tasks: 🟩 Axum real-world example.
 Outcomes axum-middleware-example
 utils, user model, user service
-Workflow Define Errors, ResponseBody and constants, into response
-Define Service Error, Response Body and Constant messages After refering to actix-middleware-example developed by Eason Chai, I understood the basic workflow and skeleton of the example. I too defined a Service Error, one similar in actix-middleware-example to generalise the error and error response.
+Workflow Define Service Error, Response Body and Constant messages After refering to actix-middleware-example developed by Eason Chai, I understood the basic workflow and skeleton of the example. I too defined a Service Error, one similar in actix-middleware-example to generalise the error and error response.
 pub struct ServiceError { pub http_status: StatusCode, pub body: ResponseBody&amp;lt;String&amp;gt;, } impl ServiceError { pub fn new(http_status: StatusCode, message: String) -&amp;gt; ServiceError { ServiceError { http_status, body: ResponseBody { message, data: String::new(), }, } } pub fn response(&amp;amp;self) -&amp;gt; http::Result&amp;lt;Response&amp;lt;&amp;amp;ResponseBody&amp;lt;String&amp;gt;&amp;gt;&amp;gt; { Response::builder().</description>
     </item>
     
