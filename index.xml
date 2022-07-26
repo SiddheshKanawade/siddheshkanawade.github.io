@@ -6,7 +6,17 @@
     <description>Recent content on Hello, Siddhesh Kanawade here</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Jul 2022 23:57:50 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Jul 2022 10:15:17 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GSoC: Midterm Evaluation</title>
+      <link>https://siddheshkanawade.github.io/posts/mideval/</link>
+      <pubDate>Tue, 26 Jul 2022 10:15:17 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/posts/mideval/</guid>
+      <description>Midterm Evaluation Dates: 25th July, 2022 to 29th July, 2022
+Contribution/Task Accomplishment till now Task Description Task Status Estimated/Required Time casbin-grpc The casbin-grpc repository was not maintained in a while and had incomplete code. So I was supposed to maintain the repository. Given to another contributor, I took on to develop axum-casbin-auth. Devoted some time to understand the repository and what is required to do 1 week axum-casbin-auth Implement axum web framework(middleware) with casbin.</description>
+    </item>
+    
     <item>
       <title>GSoC: Week 6</title>
       <link>https://siddheshkanawade.github.io/posts/week6/</link>

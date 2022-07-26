@@ -5,8 +5,58 @@
         <description>Recent content in Posts on Hello, Siddhesh Kanawade here</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Sun, 24 Jul 2022 23:57:50 +0530</lastBuildDate>
+        <lastBuildDate>Tue, 26 Jul 2022 10:15:17 +0530</lastBuildDate>
         <atom:link href="https://siddheshkanawade.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>GSoC: Midterm Evaluation</title>
+            <link>https://siddheshkanawade.github.io/posts/mideval/</link>
+            <pubDate>Tue, 26 Jul 2022 10:15:17 +0530</pubDate>
+            
+            <guid>https://siddheshkanawade.github.io/posts/mideval/</guid>
+            <description>Midterm Evaluation Dates: 25th July, 2022 to 29th July, 2022
+Contribution/Task Accomplishment till now Task Description Task Status Estimated/Required Time casbin-grpc The casbin-grpc repository was not maintained in a while and had incomplete code. So I was supposed to maintain the repository. Given to another contributor, I took on to develop axum-casbin-auth. Devoted some time to understand the repository and what is required to do 1 week axum-casbin-auth Implement axum web framework(middleware) with casbin.</description>
+            <content type="html"><![CDATA[<h2 id="midterm-evaluation">Midterm Evaluation</h2>
+<p><strong>Dates</strong>: 25th July, 2022 to 29th July, 2022</p>
+<h3 id="contributiontask-accomplishment-till-now">Contribution/Task Accomplishment till now</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Task</th>
+<th style="text-align:center">Description</th>
+<th style="text-align:center">Task Status</th>
+<th style="text-align:center">Estimated/Required Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">casbin-grpc</td>
+<td style="text-align:center">The casbin-grpc repository was not maintained in a while and had incomplete code. So I was supposed to maintain the repository.</td>
+<td style="text-align:center">Given to another contributor, I took on to develop axum-casbin-auth. Devoted some time to understand the repository and what is required to do</td>
+<td style="text-align:center">1 week</td>
+</tr>
+<tr>
+<td style="text-align:center">axum-casbin-auth</td>
+<td style="text-align:center">Implement axum web framework(middleware) with casbin. Its a access control middleware for axum framework</td>
+<td style="text-align:center">Completed</td>
+<td style="text-align:center">2.5 Weeks</td>
+</tr>
+<tr>
+<td style="text-align:center">casbin-rs/examples</td>
+<td style="text-align:center">The examples repository was not updated since, I had to update the dependencies and resolve the upcoming errors. Also, there is reimport of tokio which I need to resolve</td>
+<td style="text-align:center">Completed</td>
+<td style="text-align:center">1-1.5 week</td>
+</tr>
+<tr>
+<td style="text-align:center">axum-middleware-example</td>
+<td style="text-align:center">Develop a real-world example using axum-casbin-auth</td>
+<td style="text-align:center">Ongoing</td>
+<td style="text-align:center">2.5 weeks</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+        </item>
         
         <item>
             <title>GSoC: Week 6</title>
