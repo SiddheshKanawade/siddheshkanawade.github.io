@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Siddhesh Kanawade ">
+<meta name="description" content="Brief Overview of Problem Statement The goal of this challenge is to classify a given geographical feature into one of the six classes.
+&amp;lsquo;Demolition&amp;rsquo;: 0 &amp;lsquo;Road&amp;rsquo;: 1 &amp;lsquo;Residential&amp;rsquo;: 2 &amp;lsquo;Commercial&amp;rsquo;: 3 &amp;lsquo;Industrial&amp;rsquo;: 4 &amp;lsquo;Mega Projects&amp;rsquo;: 5 Dataset Analysis The dataset consisted of training and test data. Both the datasets were in .geojson format. The problem statement requires to use CVPR EarthVision dataset. The entire description of the dataset and usage of different Deep Learning technics to produce it can be found on the attached link." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://siddheshkanawade.github.io/blogs/geoclassifier/" />
+
+
+    <title>
+        
+            Geoclassifier-Granule.ai :: Hello, Siddhesh Kanawade here 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://siddheshkanawade.github.io/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://siddheshkanawade.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://siddheshkanawade.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://siddheshkanawade.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://siddheshkanawade.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://siddheshkanawade.github.io/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://siddheshkanawade.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="Geoclassifier-Granule.ai">
+<meta itemprop="description" content="Brief Overview of Problem Statement The goal of this challenge is to classify a given geographical feature into one of the six classes.
+&lsquo;Demolition&rsquo;: 0 &lsquo;Road&rsquo;: 1 &lsquo;Residential&rsquo;: 2 &lsquo;Commercial&rsquo;: 3 &lsquo;Industrial&rsquo;: 4 &lsquo;Mega Projects&rsquo;: 5 Dataset Analysis The dataset consisted of training and test data. Both the datasets were in .geojson format. The problem statement requires to use CVPR EarthVision dataset. The entire description of the dataset and usage of different Deep Learning technics to produce it can be found on the attached link."><meta itemprop="datePublished" content="2022-08-07T02:10:49+05:30" />
+<meta itemprop="dateModified" content="2022-08-07T02:10:49+05:30" />
+<meta itemprop="wordCount" content="836"><meta itemprop="image" content="https://siddheshkanawade.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://siddheshkanawade.github.io"/>
+
+<meta name="twitter:title" content="Geoclassifier-Granule.ai"/>
+<meta name="twitter:description" content="Brief Overview of Problem Statement The goal of this challenge is to classify a given geographical feature into one of the six classes.
+&lsquo;Demolition&rsquo;: 0 &lsquo;Road&rsquo;: 1 &lsquo;Residential&rsquo;: 2 &lsquo;Commercial&rsquo;: 3 &lsquo;Industrial&rsquo;: 4 &lsquo;Mega Projects&rsquo;: 5 Dataset Analysis The dataset consisted of training and test data. Both the datasets were in .geojson format. The problem statement requires to use CVPR EarthVision dataset. The entire description of the dataset and usage of different Deep Learning technics to produce it can be found on the attached link."/>
+
+
+
+    <meta property="og:title" content="Geoclassifier-Granule.ai" />
+<meta property="og:description" content="Brief Overview of Problem Statement The goal of this challenge is to classify a given geographical feature into one of the six classes.
+&lsquo;Demolition&rsquo;: 0 &lsquo;Road&rsquo;: 1 &lsquo;Residential&rsquo;: 2 &lsquo;Commercial&rsquo;: 3 &lsquo;Industrial&rsquo;: 4 &lsquo;Mega Projects&rsquo;: 5 Dataset Analysis The dataset consisted of training and test data. Both the datasets were in .geojson format. The problem statement requires to use CVPR EarthVision dataset. The entire description of the dataset and usage of different Deep Learning technics to produce it can be found on the attached link." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://siddheshkanawade.github.io/blogs/geoclassifier/" /><meta property="og:image" content="https://siddheshkanawade.github.io"/><meta property="article:section" content="blogs" />
+<meta property="article:published_time" content="2022-08-07T02:10:49+05:30" />
+<meta property="article:modified_time" content="2022-08-07T02:10:49+05:30" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-08-07 02:10:49 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://siddheshkanawade.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text">Welcome/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://siddheshkanawade.github.io/about/">About</a></li><li><a href="https://siddheshkanawade.github.io/blogs/">Blog</a></li><li><a href="https://siddheshkanawade.github.io/posts/">GSoC</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://siddheshkanawade.github.io/blogs/geoclassifier/">Geoclassifier-Granule.ai</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h3 id="brief-overview-of-problem-statement">Brief Overview of Problem Statement</h3>
+<p>The goal of this challenge is to classify a given geographical feature into one of the six classes.</p>
+<ol>
+<li>&lsquo;Demolition&rsquo;: 0</li>
+<li>&lsquo;Road&rsquo;: 1</li>
+<li>&lsquo;Residential&rsquo;: 2</li>
+<li>&lsquo;Commercial&rsquo;: 3</li>
+<li>&lsquo;Industrial&rsquo;: 4</li>
+<li>&lsquo;Mega Projects&rsquo;: 5</li>
+</ol>
+<h3 id="dataset-analysis">Dataset Analysis</h3>
+<p>The dataset consisted of training and test data. Both the datasets were in <code>.geojson</code> format. The problem statement requires to use CVPR <a href="https://openaccess.thecvf.com/content/CVPR2021W/EarthVision/papers/Verma_QFabric_Multi-Task_Change_Detection_Dataset_CVPRW_2021_paper.pdf">EarthVision</a> dataset. The entire description of the dataset and usage of different Deep Learning technics to produce it can be found on the attached link.</p>
+<p><strong>Total Entries:</strong> 310006 <br>
+<strong>Columns</strong>: 15</p>
+<p>Index([&lsquo;index&rsquo;, &lsquo;change_type&rsquo;, &lsquo;change_status_date1&rsquo;, &lsquo;change_status_date2&rsquo;,
+&lsquo;change_status_date3&rsquo;, &lsquo;change_status_date4&rsquo;, &lsquo;change_status_date5&rsquo;,
+&lsquo;date1&rsquo;, &lsquo;date2&rsquo;, &lsquo;date3&rsquo;, &lsquo;date4&rsquo;, &lsquo;date5&rsquo;, &lsquo;urban_types&rsquo;,
+&lsquo;geography_types&rsquo;, &lsquo;geometry&rsquo;], \</p>
+<p><strong>Independent Variables:</strong></p>
+<ol>
+<li>change_status</li>
+<li>urban_types</li>
+<li>geography_types</li>
+<li>geometry</li>
+</ol>
+<p><strong>Dependent Variable:</strong></p>
+<ol>
+<li>change_type</li>
+</ol>
+<p>From the above, urban_types and geography_types are multi valued categorical columns, thus need to convert them into numeric. Thus, use <code>One Hot Encoding</code>. Geometry can used to find area or perimeter of the polygon. The difference between the two dates can also be used to predict the contruction type at the place.</p>
+<p>I have used geometry, urban_types and geography_types as independent variables and have dropped change_status.</p>
+<h3 id="development-environment">Development Environment</h3>
+<ol>
+<li>Kaggle(primary)</li>
+<li>Jupyter Notebook(secondary)</li>
+</ol>
+<h3 id="model-training-and-submission">Model training and submission</h3>
+<p>Major Libraries used:</p>
+<ol>
+<li>numpy = linear algebra</li>
+<li>pandas = fileprocessing(I/O operation)</li>
+<li>geopandas = process geospatial data</li>
+<li>sklearn = labelencoding, one hot encoding, KNeighborsClassifier</li>
+<li>gradio = implement GUI for trained model.</li>
+</ol>
+<p>As per the instructions in kaggle,  I have used <code>KNeighborsClassifier</code> to train dataset with value of <code>k=3</code>.
+Used geopandas to read data from <code>train.geojson</code> and <code>test.geojson</code>. The <code>geography_types</code> had multiple parameters separated by <code>,</code> which had roughly 100 unique entries, which means 100 bits in one hot encoding which would take significant processing power, and stale the output. To avoid this, I took only the first occurence which reduced the entries to 15.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_geography <span style="color:#f92672">=</span> df[<span style="color:#e6db74">&#39;geography_types&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>df_geography_single <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#df_geography[0]</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(df_geography)):
+</span></span><span style="display:flex;"><span>    df_geography_single<span style="color:#f92672">.</span>append(df_geography[i]<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;,&#34;</span>, <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>])
+</span></span></code></pre></div><p>Same is true with <code>urban_types</code>. Reduced number of entries to five.</p>
+<p><img src="https://siddheshkanawade.github.io/img/granule/set.png" alt="Image alt"></p>
+<p>Now, use the One Hot Encoding to convert string to numeric value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>df_demo <span style="color:#f92672">=</span> get_ohe(df_demo)
+</span></span><span style="display:flex;"><span>ohe <span style="color:#f92672">=</span> OneHotEncoder(sparse<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>ohe<span style="color:#f92672">.</span>fit((df_demo[<span style="color:#e6db74">&#39;geography_types&#39;</span>]<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_ohe</span>(df):
+</span></span><span style="display:flex;"><span>    temp_df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame(data<span style="color:#f92672">=</span>ohe<span style="color:#f92672">.</span>transform(df[[<span style="color:#e6db74">&#39;geography_types&#39;</span>]]), columns<span style="color:#f92672">=</span>ohe<span style="color:#f92672">.</span>get_feature_names_out())
+</span></span><span style="display:flex;"><span>    df<span style="color:#f92672">.</span>drop(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;geography_types&#39;</span>], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, inplace<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>    df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>concat([df<span style="color:#f92672">.</span>reset_index(drop<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>), temp_df], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    df
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> df
+</span></span></code></pre></div><p>Repeat same procedure for <code>urban_types</code>. We get the following output:</p>
+<p><img src="https://siddheshkanawade.github.io/img/granule/encoding.png" alt="Image alt"></p>
+<p>Using labelencoding, convert the given <code>change_types</code> classes corresponding Integer.</p>
+<ul>
+<li>&lsquo;Demolition&rsquo;: 1</li>
+<li>&lsquo;Road&rsquo;: 5</li>
+<li>&lsquo;Residential&rsquo;: 4</li>
+<li>&lsquo;Commercial&rsquo;: 0</li>
+<li>&lsquo;Industrial&rsquo;: 2</li>
+<li>&lsquo;Mega Projects&rsquo;: 3</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>encoded_change <span style="color:#f92672">=</span> le<span style="color:#f92672">.</span>fit_transform(df_demo[<span style="color:#e6db74">&#39;change_type&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>le <span style="color:#f92672">=</span> preprocessing<span style="color:#f92672">.</span>LabelEncoder()
+</span></span><span style="display:flex;"><span>le<span style="color:#f92672">.</span>fit([<span style="color:#e6db74">&#34;Demolition&#34;</span>, <span style="color:#e6db74">&#34;Road&#34;</span>, <span style="color:#e6db74">&#34;Residential&#34;</span>, <span style="color:#e6db74">&#34;Commercial&#34;</span>, <span style="color:#e6db74">&#34;Industrial&#34;</span>, <span style="color:#e6db74">&#34;Mega Projects&#34;</span>])
+</span></span><span style="display:flex;"><span>list(le<span style="color:#f92672">.</span>classes_)
+</span></span></code></pre></div><p>Use sklearn <code>train_tes_split</code> to split and train the model with train_size as 0.67. The accuracy of the model roughly came out to be <code>45%</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, train_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.67</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.neighbors <span style="color:#f92672">import</span> KNeighborsClassifier
+</span></span><span style="display:flex;"><span>neigh <span style="color:#f92672">=</span> KNeighborsClassifier(n_neighbors<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>neigh<span style="color:#f92672">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prediction_train <span style="color:#f92672">=</span> neigh<span style="color:#f92672">.</span>predict(X_test)
+</span></span></code></pre></div><p>mean_f1_score:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> precision_score, recall_score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> precision_score(y_test<span style="color:#f92672">.</span>values, prediction_train, average <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;micro&#34;</span>)
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> recall_score(y_test<span style="color:#f92672">.</span>values, prediction_train, average<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;micro&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mean_f1_score <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>(p<span style="color:#f92672">*</span>r))<span style="color:#f92672">/</span>(p<span style="color:#f92672">+</span>r)
+</span></span></code></pre></div><h3 id="integrating-with-grad-io">Integrating with Grad IO</h3>
+<p>Grad IO provides a simple to integrate GUI development platform.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> gradio <span style="color:#66d9ef">as</span> gr
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">image_classifier</span>(inp):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#39;cat&#39;</span>: <span style="color:#ae81ff">0.3</span>, <span style="color:#e6db74">&#39;dog&#39;</span>: <span style="color:#ae81ff">0.7</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>demo <span style="color:#f92672">=</span> gr<span style="color:#f92672">.</span>Interface(fn<span style="color:#f92672">=</span>image_classifier, inputs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span>, outputs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;label&#34;</span>)
+</span></span><span style="display:flex;"><span>demo<span style="color:#f92672">.</span>launch()
+</span></span></code></pre></div><p>Above is the standard code snippet from gradio.app, it has image_classifier function which implements the logic. Part of logic is to predict the output using trained model.</p>
+<p>Logic for Geoclassifier:
+I have maintained a dictionary with keys as the urban_types and geography_types string and value default to 0. Now, change the value to 1 for the specific key passed as input. Then dict.values() convert into 2D array and pass the array to trained model to predict output.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert_value</span>(urban, geography):    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> urban <span style="color:#f92672">in</span> areatype<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> geography <span style="color:#f92672">in</span> areatype<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>            areatype[urban]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            areatype[geography]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    converted<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span>    temp<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> areatype<span style="color:#f92672">.</span>values():
+</span></span><span style="display:flex;"><span>        temp<span style="color:#f92672">.</span>append(item)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    converted<span style="color:#f92672">.</span>append(temp)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> converted
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">predict_value</span>(converted):
+</span></span><span style="display:flex;"><span>    prediction <span style="color:#f92672">=</span> neigh<span style="color:#f92672">.</span>predict(converted)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> prediction
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert_to_class</span>(prediction):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> classes[prediction]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">merge</span>(urban, geography):
+</span></span><span style="display:flex;"><span>    urban_value <span style="color:#f92672">=</span> str(urban)
+</span></span><span style="display:flex;"><span>    geography_value <span style="color:#f92672">=</span> str(geography)
+</span></span><span style="display:flex;"><span>    converted_arr<span style="color:#f92672">=</span>[[]]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> urban_value <span style="color:#f92672">in</span> areatype<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> geography_value <span style="color:#f92672">in</span> areatype<span style="color:#f92672">.</span>keys():
+</span></span><span style="display:flex;"><span>            converted_arr <span style="color:#f92672">=</span> convert_value(urban_value, geography_value)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Incorrect Input&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Incorrect Input&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    prediction <span style="color:#f92672">=</span> predict_value(converted_arr)
+</span></span><span style="display:flex;"><span>    class_output <span style="color:#f92672">=</span> convert_to_class(prediction[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> class_output
+</span></span></code></pre></div><p>Hosting Grad IO:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> gradio <span style="color:#66d9ef">as</span> gr
+</span></span><span style="display:flex;"><span>outputs <span style="color:#f92672">=</span> gr<span style="color:#f92672">.</span>outputs<span style="color:#f92672">.</span>Textbox()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> gr<span style="color:#f92672">.</span>Interface(fn<span style="color:#f92672">=</span>merge, inputs<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;text&#39;</span>, <span style="color:#e6db74">&#39;text&#39;</span>], outputs<span style="color:#f92672">=</span>outputs, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;GEO: Barren Land, Coastal, Dense Forest, Desert, Farms, Grass Land, Hills, Lakes, River, Snow, Sparse Forest || URBAN: Dense Urban, Industrial, Rural, Sparse Urban, Urban Slum&#34;</span>)
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>launch(share<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p><img src="https://siddheshkanawade.github.io/img/granule/output.gif" alt="Image alt"></p>
+<p>On launching the app, we get <code>https://51381.gradio.app/</code> as public gradio link. This link would be operation for about 72 hours after hosting for first time. Thus, its a <code>temporary hosting</code>. For permanent hosting, deploy the model on hosting platforms like <code>hugging face</code>.</p>
+<h4 id="note">NOTE:</h4>
+<p>I tried to include the <code>area</code> of the polygon as the independent variable in training dataset which further increased the accuracy to approximately 49%. I used geopandas to calculate the area of the polygon.</p>
+<h3 id="deployment">Deployment</h3>
+<p>Grad IO is compatible with hugging face hosting platform. I tried deploying the model on the hugging space, and was successful in understanding the docs, created new space, added app.py, but there is a environmental issue which is hindering in hosting of the model.</p>
+<p>Repository: <a href="https://huggingface.co/spaces/7siddhesh4-kanawade3/geoclassifier">https://huggingface.co/spaces/7siddhesh4-kanawade3/geoclassifier</a></p>
+<p>Error:</p>
+<p><img src="https://siddheshkanawade.github.io/img/granule/hostingerr.png" alt="Image alt"></p>
+<h3 id="scope-for-improvement">Scope for improvement</h3>
+<ol>
+<li>Include area, change_status, dates in prediction</li>
+<li>Don&rsquo;t split the geography_types and urban_types dataset</li>
+<li>Deploy the model</li>
+</ol>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Made with ❤️ by Siddhesh Kanawade</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://siddheshkanawade.github.io/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

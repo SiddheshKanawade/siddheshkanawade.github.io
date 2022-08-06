@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on Hello, Siddhesh Kanawade here</title>
+    <link>https://siddheshkanawade.github.io/blogs/</link>
+    <description>Recent content in Blogs on Hello, Siddhesh Kanawade here</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Aug 2022 02:10:49 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/blogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Geoclassifier-Granule.ai</title>
+      <link>https://siddheshkanawade.github.io/blogs/geoclassifier/</link>
+      <pubDate>Sun, 07 Aug 2022 02:10:49 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/blogs/geoclassifier/</guid>
+      <description>Brief Overview of Problem Statement The goal of this challenge is to classify a given geographical feature into one of the six classes.
+&amp;lsquo;Demolition&amp;rsquo;: 0 &amp;lsquo;Road&amp;rsquo;: 1 &amp;lsquo;Residential&amp;rsquo;: 2 &amp;lsquo;Commercial&amp;rsquo;: 3 &amp;lsquo;Industrial&amp;rsquo;: 4 &amp;lsquo;Mega Projects&amp;rsquo;: 5 Dataset Analysis The dataset consisted of training and test data. Both the datasets were in .geojson format. The problem statement requires to use CVPR EarthVision dataset. The entire description of the dataset and usage of different Deep Learning technics to produce it can be found on the attached link.</description>
+    </item>
+    
+  </channel>
+</rss>
