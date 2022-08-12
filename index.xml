@@ -18,6 +18,33 @@
     </item>
     
     <item>
+      <title>GSoC: Week 8 and 9</title>
+      <link>https://siddheshkanawade.github.io/posts/week8n9/</link>
+      <pubDate>Fri, 05 Aug 2022 01:14:22 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/posts/week8n9/</guid>
+      <description>Duration 1st August - 14th August 2022
+Tasks: ✅ Axum real-world example:
+✅ add register, delete and update api services ✅ make clippy happy ✅ Merge poem-todo ✅ Ensure all checks pass in Github Actions 🟩 casbin-grpc:
+✅ Management apis 🟩 Resolve error in enforcer.rs, adapter.rs 🟩 Ensure all checks pass in Github Actions Outcomes axum-middleware-example
+register, update, delete services added make clippy happy, remove unnecessary commands formatting, clippy happy in poem-todo normalize::TrailingSlash-&amp;gt;TrailingSlash</description>
+    </item>
+    
+    <item>
+      <title>GSoC: Week 7</title>
+      <link>https://siddheshkanawade.github.io/posts/week7/</link>
+      <pubDate>Sat, 30 Jul 2022 01:08:39 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/posts/week7/</guid>
+      <description>Duration 25th July - 31st July 2022
+Tasks: 🟩 Axum real-world example:
+✅ Define routes and api calls. ✅ Draft logic for auth.rs(middleware) ✅ Define structure of main.rs and enforce policies in backend Outcomes axum-middleware-example
+api, middleware, routes csv utils, main.rs, server setup
+Workflow Define routes and api calls Following functions were to be implemented to make the api calls:
+signin() {} register() {} delete_user() {} get_user() {} get_all_user() {} In this week, I was able to draft signin, get_user and get_all_user functions.</description>
+    </item>
+    
+    <item>
       <title>GSoC: Midterm Evaluation</title>
       <link>https://siddheshkanawade.github.io/posts/mideval/</link>
       <pubDate>Tue, 26 Jul 2022 10:15:17 +0530</pubDate>

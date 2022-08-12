@@ -5,8 +5,431 @@
         <description>Recent content in Posts on Hello, Siddhesh Kanawade here</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Tue, 26 Jul 2022 10:15:17 +0530</lastBuildDate>
+        <lastBuildDate>Fri, 05 Aug 2022 01:14:22 +0530</lastBuildDate>
         <atom:link href="https://siddheshkanawade.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>GSoC: Week 8 and 9</title>
+            <link>https://siddheshkanawade.github.io/posts/week8n9/</link>
+            <pubDate>Fri, 05 Aug 2022 01:14:22 +0530</pubDate>
+            
+            <guid>https://siddheshkanawade.github.io/posts/week8n9/</guid>
+            <description>Duration 1st August - 14th August 2022
+Tasks: ✅ Axum real-world example:
+✅ add register, delete and update api services ✅ make clippy happy ✅ Merge poem-todo ✅ Ensure all checks pass in Github Actions 🟩 casbin-grpc:
+✅ Management apis 🟩 Resolve error in enforcer.rs, adapter.rs 🟩 Ensure all checks pass in Github Actions Outcomes axum-middleware-example
+register, update, delete services added make clippy happy, remove unnecessary commands formatting, clippy happy in poem-todo normalize::TrailingSlash-&amp;gt;TrailingSlash</description>
+            <content type="html"><![CDATA[<h2 id="duration">Duration</h2>
+<p><strong>1st August - 14th August 2022</strong></p>
+<h2 id="tasks">Tasks:</h2>
+<p>✅ Axum real-world example:</p>
+<ol>
+<li>✅ add register, delete and update api services</li>
+<li>✅ make clippy happy</li>
+<li>✅ Merge poem-todo</li>
+<li>✅ Ensure all checks pass in Github Actions</li>
+</ol>
+<p>🟩 casbin-grpc:</p>
+<ol>
+<li>✅ Management apis</li>
+<li>🟩 Resolve error in enforcer.rs, adapter.rs</li>
+<li>🟩 Ensure all checks pass in Github Actions</li>
+</ol>
+<h2 id="outcomes">Outcomes</h2>
+<p><strong>axum-middleware-example</strong><br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/02200c50187a5be76eadde72ef38d4fe0ee4f3a6">register, update, delete services added</a> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/dcdd94fee90a727417c54cb86704b655dc4b9e6c">make clippy happy, remove unnecessary commands</a> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/657b826311a6b92acbe47bfad1cb0ba50c9d115e">formatting, clippy happy in poem-todo</a> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/90c6c75d6f60f823412ea500e1df28c67545f019">normalize::TrailingSlash-&gt;TrailingSlash</a></p>
+<p><strong>casbin-grpc</strong><br>
+<a href="https://github.com/casbin-rs/casbin-grpc/pull/7/commits/835e3236061b645a7dfe35966fdca0a700488d73">management apis</a></p>
+<h2 id="workflow">Workflow</h2>
+<h3 id="axum-middleware-example">axum-middleware-example</h3>
+<ol>
+<li><strong>Add register, delete and update user api services:</strong></li>
+</ol>
+<p>api/user.rs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">register</span>(
+</span></span><span style="display:flex;"><span>     Json(reg_form): <span style="color:#a6e22e">Json</span><span style="color:#f92672">&lt;</span>AddUser<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>     pool: <span style="color:#a6e22e">Extension</span><span style="color:#f92672">&lt;</span>Pool<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>     Extension(enforcer): <span style="color:#a6e22e">Extension</span><span style="color:#f92672">&lt;</span>Arc<span style="color:#f92672">&lt;</span>RwLock<span style="color:#f92672">&lt;</span>CachedEnforcer<span style="color:#f92672">&gt;&gt;&gt;</span>,
+</span></span><span style="display:flex;"><span> ) -&gt; <span style="color:#a6e22e">Response</span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> user <span style="color:#f92672">=</span> reg_form;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">match</span> user::register(user, <span style="color:#f92672">&amp;</span>pool, enforcer).<span style="color:#66d9ef">await</span> {
+</span></span><span style="display:flex;"><span>         Ok(message) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>             Json(ResponseBody::new(<span style="color:#f92672">&amp;</span>message, constants::EMPTY)).into_response()
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>         Err(_) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>             StatusCode::INTERNAL_SERVER_ERROR,
+</span></span><span style="display:flex;"><span>             constants::MESSAGE_NEW_USER_ADD_PERMISSION_ERROR.to_string(),
+</span></span><span style="display:flex;"><span>         )
+</span></span><span style="display:flex;"><span>             .into_response(),
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>Above is the simple function which outputs the Json response if user::register executes without error. Here we wrap CachedEnforcer into Rwlock, since enforcer is not thread-safe.</p>
+<p>service/user.rs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">register</span>(
+</span></span><span style="display:flex;"><span>     user: <span style="color:#a6e22e">AddUser</span>,
+</span></span><span style="display:flex;"><span>     Extension(pool): <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">Extension</span><span style="color:#f92672">&lt;</span>Pool<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>     enforcer: <span style="color:#a6e22e">Arc</span><span style="color:#f92672">&lt;</span>RwLock<span style="color:#f92672">&lt;</span>CachedEnforcer<span style="color:#f92672">&gt;&gt;</span>,
+</span></span><span style="display:flex;"><span> ) -&gt; Result<span style="color:#f92672">&lt;</span>String, ServiceError<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> username <span style="color:#f92672">=</span> user.clone().username;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> email <span style="color:#f92672">=</span> user.clone().email;
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> clone_role <span style="color:#f92672">=</span> user.role.clone();
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> g_policies <span style="color:#f92672">=</span> vec![username.clone(), clone_role.to_string()];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">// CHECK IF USER IS ALREADY PRESENT
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     <span style="color:#66d9ef">if</span> User::get_user_by_email(<span style="color:#f92672">&amp;</span>email, <span style="color:#f92672">&amp;</span>pool.get().unwrap()).is_err() {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">match</span> enforcer
+</span></span><span style="display:flex;"><span>             .write()
+</span></span><span style="display:flex;"><span>             .<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>             .add_named_grouping_policy(<span style="color:#f92672">&amp;</span><span style="color:#e6db74">&#34;g&#34;</span>, g_policies)
+</span></span><span style="display:flex;"><span>             .<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>         {
+</span></span><span style="display:flex;"><span>             Ok(_) <span style="color:#f92672">=&gt;</span> info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Preset policies(p) add successfully&#34;</span>),
+</span></span><span style="display:flex;"><span>             Err(err) <span style="color:#f92672">=&gt;</span> error<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Preset policies(g) add error: {}&#34;</span>, err.to_string()),
+</span></span><span style="display:flex;"><span>         };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">match</span> User::register(user, <span style="color:#f92672">&amp;</span>pool.get().unwrap()) {
+</span></span><span style="display:flex;"><span>             Ok(message) <span style="color:#f92672">=&gt;</span> Ok(message),
+</span></span><span style="display:flex;"><span>             Err(message) <span style="color:#f92672">=&gt;</span> Err(ServiceError::new(
+</span></span><span style="display:flex;"><span>                 StatusCode::INTERNAL_SERVER_ERROR,
+</span></span><span style="display:flex;"><span>                 message,
+</span></span><span style="display:flex;"><span>             )),
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>     } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>         Err(ServiceError::new(
+</span></span><span style="display:flex;"><span>             StatusCode::INTERNAL_SERVER_ERROR,
+</span></span><span style="display:flex;"><span>             constants::MESSAGE_NEW_USER_ADD_PERMISSION_ERROR.to_string(),
+</span></span><span style="display:flex;"><span>         ))
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>Here, first its checked whether the user is already present or not. If user isn&rsquo;t already present, then update the grouping policy in casbin-rules and then update the user in users table. Here grouping policy is present as vector and enforced using CachedEnforcer wrapped inside Rwlock.</p>
+<p>model/user.rs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">register</span>(user: <span style="color:#a6e22e">AddUser</span>, conn: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">Connection</span>) -&gt; Result<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> Self::get_user_by_email(<span style="color:#f92672">&amp;</span>user.email, conn).is_err() {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">let</span> hashed_pwd <span style="color:#f92672">=</span> hash_password(<span style="color:#f92672">&amp;</span>user.password).unwrap();
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">let</span> user_upd <span style="color:#f92672">=</span> AddUser {
+</span></span><span style="display:flex;"><span>                 password: <span style="color:#a6e22e">hashed_pwd</span>,
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">..</span>user
+</span></span><span style="display:flex;"><span>             };
+</span></span><span style="display:flex;"><span>             diesel::insert_into(users)
+</span></span><span style="display:flex;"><span>                 .values(<span style="color:#f92672">&amp;</span>user_upd)
+</span></span><span style="display:flex;"><span>                 .execute(conn)
+</span></span><span style="display:flex;"><span>                 .map_err(<span style="color:#f92672">|</span>e<span style="color:#f92672">|</span> e.to_string())<span style="color:#f92672">?</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>             Ok(constants::MESSAGE_SIGNUP_SUCCESS.to_string())
+</span></span><span style="display:flex;"><span>         } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>             Err(format!(<span style="color:#e6db74">&#34;User {} is already registered&#34;</span>, <span style="color:#f92672">&amp;</span>user.username))
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>     }
+</span></span></code></pre></div><p>In order to update user information to users table, above function is called in register at service/user.rs. If user is not present, then hash the password using <code>hash_password()</code> and pass this parameter along with others to users table using <code>diesel</code>.</p>
+<ol start="2">
+<li><strong>Make clippy happy, formatting</strong>
+There were multiple unused lifetimes in the <code>actix-middleware-example</code> like Insertable, AsChangeset, etc. These were necessary to insert values to tables located at database and hence removing them won&rsquo;t be a choice. Hence used <code>#![allow(clippy::extra_unused_lifetimes)]</code> to ignore them.</li>
+</ol>
+<p><code>cargo clippy --fix</code> =&gt; Automatically applied clippy suggestions to some extent.
+<code>cargo fmt </code> =&gt; To check formatting of the code.</p>
+<p>Till now <code>poem-todo</code> was merged in master branch of the repository and hence I had to pull the changes, resolve the minor conflict and make clippy happy in it.</p>
+<ol start="3">
+<li><strong>Ensure all checks pass in Github Actions:</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span> <span style="color:#66d9ef">use</span> actix_web::middleware::normalize::TrailingSlash;
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>                            <span style="color:#f92672">^^^^^^^^^</span> private module
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>note: <span style="color:#a6e22e">the</span> module <span style="color:#960050;background-color:#1e0010">`</span>normalize<span style="color:#960050;background-color:#1e0010">`</span> is defined here
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-</span>-&gt; <span style="color:#f92672">/</span>home<span style="color:#f92672">/</span>runner<span style="color:#f92672">/</span>.cargo<span style="color:#f92672">/</span>registry<span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>github.com<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>ecc6299db9ec823<span style="color:#f92672">/</span>actix<span style="color:#f92672">-</span>web<span style="color:#f92672">-</span><span style="color:#ae81ff">4.1.0</span><span style="color:#f92672">/</span>src<span style="color:#f92672">/</span>middleware<span style="color:#f92672">/</span><span style="color:#66d9ef">mod</span>.rs:<span style="color:#ae81ff">10</span>:<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">10</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">mod</span> normalize;
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">|</span> <span style="color:#f92672">^^^^^^^^^^^^^^</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For more information about this error, <span style="color:#66d9ef">try</span> <span style="color:#960050;background-color:#1e0010">`</span>rustc <span style="color:#f92672">--</span>explain E0603<span style="color:#960050;background-color:#1e0010">`</span>.
+</span></span><span style="display:flex;"><span>error: <span style="color:#a6e22e">could</span> not compile <span style="color:#960050;background-color:#1e0010">`</span>actix<span style="color:#f92672">-</span>middleware<span style="color:#f92672">-</span>example<span style="color:#960050;background-color:#1e0010">`</span> due to previous error
+</span></span></code></pre></div><p>After the successfull completion of the real life example using axum-middleware, I was yet to figure out how to resolve this error. Also, this error couldn&rsquo;t be reproduced in ubuntu 20.04(due to compiler, not sure though). After some research I figured out that this was due to the upgrade in actix-web version and was removed by updating <code>normalize::TrailingSlash-&gt;TrailingSlash</code>.</p>
+<p>Output:
+<img src="/img/week8/examples.png" alt="Image alt"></p>
+<h3 id="casbin-grpc">casbin-grpc</h3>
+<h3 id="casbin-openraft">casbin-openraft</h3>
+<h2 id="please-take-a-note">PLEASE TAKE A NOTE</h2>
+<p>From 2nd August 2022, my college has started and hence most of my contributions would be in last five days of the week since I have more free time there. I can still devote around 25-30 hours per week.</p>
+<h2 id="next-week-target">Next Week target</h2>
+]]></content>
+        </item>
+        
+        <item>
+            <title>GSoC: Week 7</title>
+            <link>https://siddheshkanawade.github.io/posts/week7/</link>
+            <pubDate>Sat, 30 Jul 2022 01:08:39 +0530</pubDate>
+            
+            <guid>https://siddheshkanawade.github.io/posts/week7/</guid>
+            <description>Duration 25th July - 31st July 2022
+Tasks: 🟩 Axum real-world example:
+✅ Define routes and api calls. ✅ Draft logic for auth.rs(middleware) ✅ Define structure of main.rs and enforce policies in backend Outcomes axum-middleware-example
+api, middleware, routes csv utils, main.rs, server setup
+Workflow Define routes and api calls Following functions were to be implemented to make the api calls:
+signin() {} register() {} delete_user() {} get_user() {} get_all_user() {} In this week, I was able to draft signin, get_user and get_all_user functions.</description>
+            <content type="html"><![CDATA[<h2 id="duration">Duration</h2>
+<p><strong>25th July - 31st July 2022</strong></p>
+<h2 id="tasks">Tasks:</h2>
+<p>🟩 Axum real-world example:</p>
+<ol>
+<li>✅ Define routes and api calls.</li>
+<li>✅ Draft logic for auth.rs(middleware)</li>
+<li>✅ Define structure of main.rs and enforce policies in backend</li>
+</ol>
+<h2 id="outcomes">Outcomes</h2>
+<p><strong>axum-middleware-example</strong><br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/f9bfe55fe38cbfc1f1583f18141c622811dedf68">api, middleware, routes</a> <br>
+<a href="https://github.com/casbin-rs/examples/pull/72/commits/25ef1cdec4efb2fed7e60254c27dd9d4ea84830e">csv utils, main.rs, server setup</a></p>
+<h2 id="workflow">Workflow</h2>
+<h3 id="define-routes-and-api-calls">Define routes and api calls</h3>
+<p>Following functions were to be implemented to make the api calls:</p>
+<ol>
+<li>signin() {}</li>
+<li>register() {}</li>
+<li>delete_user() {}</li>
+<li>get_user() {}</li>
+<li>get_all_user() {}</li>
+</ol>
+<p>In this week, I was able to draft signin, get_user and get_all_user functions. In register and delete_user function I have to update the changes to both <code>casbin-rules</code> and <code>users</code> table in psql database.</p>
+<p>Following is the code snippet for <code>POST(api/auth/signin)</code> request:</p>
+<p>api/user.rs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span> <span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">signin</span>(
+</span></span><span style="display:flex;"><span>     Json(login_form): <span style="color:#a6e22e">Json</span><span style="color:#f92672">&lt;</span>LoginForm<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>     pool: <span style="color:#a6e22e">Extension</span><span style="color:#f92672">&lt;</span>Pool<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span> ) -&gt; <span style="color:#a6e22e">Response</span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#75715e">// output should be a json response
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>     <span style="color:#66d9ef">match</span> user::signin(login_form, <span style="color:#f92672">&amp;</span>pool) {
+</span></span><span style="display:flex;"><span>         Ok(token_res) <span style="color:#f92672">=&gt;</span> Json(ResponseBody::new(
+</span></span><span style="display:flex;"><span>             constants::MESSAGE_SIGNIN_SUCCESS,
+</span></span><span style="display:flex;"><span>             token_res,
+</span></span><span style="display:flex;"><span>         ))
+</span></span><span style="display:flex;"><span>         .into_response(),
+</span></span><span style="display:flex;"><span>         Err(_) <span style="color:#f92672">=&gt;</span> (
+</span></span><span style="display:flex;"><span>             StatusCode::INTERNAL_SERVER_ERROR,
+</span></span><span style="display:flex;"><span>             constants::MESSAGE_INTERNAL_SERVER_ERROR.to_string(),
+</span></span><span style="display:flex;"><span>         )
+</span></span><span style="display:flex;"><span>             .into_response(),
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p>This matches the response with <code>signin</code> functions defined under <code>service/user.rs</code>. On failure, it returns the Error response as shown above. Unlike actix-web, where we get <code>web::Json&lt;Data&gt;</code>, we have to use <code>Json</code> extractor as shown above in axum.</p>
+<p>service/user.rs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">signin</span>(
+</span></span><span style="display:flex;"><span>     login: <span style="color:#a6e22e">LoginForm</span>,
+</span></span><span style="display:flex;"><span>     Extension(pool): <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">Extension</span><span style="color:#f92672">&lt;</span>Pool<span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span> ) -&gt; Result<span style="color:#f92672">&lt;</span>TokenBodyResponse, ServiceError<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">match</span> User::signin(login, <span style="color:#f92672">&amp;</span>pool.get().unwrap()) {
+</span></span><span style="display:flex;"><span>         Some(logged_user) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">match</span> serde_json::from_value(
+</span></span><span style="display:flex;"><span>                 json<span style="color:#f92672">!</span>({ <span style="color:#e6db74">&#34;token&#34;</span>: <span style="color:#a6e22e">UserToken</span>::generate_token(logged_user), <span style="color:#e6db74">&#34;token_type&#34;</span>: <span style="color:#e6db74">&#34;bearer&#34;</span> }),
+</span></span><span style="display:flex;"><span>             ) {
+</span></span><span style="display:flex;"><span>                 Ok(token_res) <span style="color:#f92672">=&gt;</span> Ok(token_res),
+</span></span><span style="display:flex;"><span>                 Err(_) <span style="color:#f92672">=&gt;</span> Err(ServiceError::new(
+</span></span><span style="display:flex;"><span>                     StatusCode::INTERNAL_SERVER_ERROR,
+</span></span><span style="display:flex;"><span>                     constants::MESSAGE_INTERNAL_SERVER_ERROR.to_string(),
+</span></span><span style="display:flex;"><span>                 )),
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>         None <span style="color:#f92672">=&gt;</span> Err(ServiceError::new(
+</span></span><span style="display:flex;"><span>             StatusCode::INTERNAL_SERVER_ERROR,
+</span></span><span style="display:flex;"><span>             constants::MESSAGE_SIGNIN_FAILED.to_string(),
+</span></span><span style="display:flex;"><span>         )),
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span> }
+</span></span></code></pre></div><p><code>logged_user</code> is the LoginForm of the user, which contains user name, role, and login_session. For some logged user, we generate the token and in case there is no logged user, we simply return an error. In axum we need to extract the user data using <code>Extension(T): Extension&lt;T&gt;</code> unlike actix, where it provides the <code>web::Data(T)</code>.</p>
+<p>model/user.rs</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">signin</span>(login: <span style="color:#a6e22e">LoginForm</span>, conn: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">Connection</span>) -&gt; Option<span style="color:#f92672">&lt;</span>LoginInfo<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> Ok(user_to_verify) <span style="color:#f92672">=</span> users
+</span></span><span style="display:flex;"><span>             .filter(email.eq(<span style="color:#f92672">&amp;</span>login.email))
+</span></span><span style="display:flex;"><span>             .get_result::<span style="color:#f92672">&lt;</span>User<span style="color:#f92672">&gt;</span>(conn)
+</span></span><span style="display:flex;"><span>         {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>user_to_verify.password.is_empty()
+</span></span><span style="display:flex;"><span>                 <span style="color:#f92672">&amp;&amp;</span> compare_password(<span style="color:#f92672">&amp;</span>login.password, <span style="color:#f92672">&amp;</span>user_to_verify.password).unwrap()
+</span></span><span style="display:flex;"><span>             {
+</span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">let</span> login_session_str <span style="color:#f92672">=</span> User::generate_login_session();
+</span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">if</span> User::update_login_session_to_db(
+</span></span><span style="display:flex;"><span>                     <span style="color:#f92672">&amp;</span>user_to_verify.email,
+</span></span><span style="display:flex;"><span>                     <span style="color:#f92672">&amp;</span>login_session_str,
+</span></span><span style="display:flex;"><span>                     conn,
+</span></span><span style="display:flex;"><span>                 ) {
+</span></span><span style="display:flex;"><span>                     <span style="color:#66d9ef">return</span> Some(LoginInfo {
+</span></span><span style="display:flex;"><span>                         username: <span style="color:#a6e22e">user_to_verify</span>.username,
+</span></span><span style="display:flex;"><span>                         role: <span style="color:#a6e22e">user_to_verify</span>.role,
+</span></span><span style="display:flex;"><span>                         login_session: <span style="color:#a6e22e">login_session_str</span>,
+</span></span><span style="display:flex;"><span>                     });
+</span></span><span style="display:flex;"><span>                 }
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>         None
+</span></span><span style="display:flex;"><span>     }
+</span></span></code></pre></div><p>Above function implements the main logic to signin the user, it calls helper function from utils to compare the password from database and updates the login_session to the database.</p>
+<p>Similar to the above, we have following api calls: <br>
+POST(api/auth/register) <br>
+DELETE(api/admin/{:id}) <br>
+GET(api/user/{:id}) <br>
+GET(api/users) <br>
+PUT(api/admin/{:id})</p>
+<h3 id="draft-logic-for-authrsmiddleware">Draft logic for auth.rs(middleware)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span>         <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> authenticate_pass: <span style="color:#66d9ef">bool</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> authenticate_username: String <span style="color:#f92672">=</span> String::from(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         <span style="color:#75715e">// Bypass account routes
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>         <span style="color:#66d9ef">let</span> headers <span style="color:#f92672">=</span> req.headers_mut();
+</span></span><span style="display:flex;"><span>         headers.append(
+</span></span><span style="display:flex;"><span>             HeaderName::from_static(<span style="color:#e6db74">&#34;content-length&#34;</span>),
+</span></span><span style="display:flex;"><span>             HeaderValue::from_static(<span style="color:#e6db74">&#34;true&#34;</span>),
+</span></span><span style="display:flex;"><span>         );
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> Method::OPTIONS <span style="color:#f92672">==</span> <span style="color:#f92672">*</span>req.method() {
+</span></span><span style="display:flex;"><span>             authenticate_pass <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>         } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">for</span> ignore_route <span style="color:#66d9ef">in</span> constants::IGNORE_ROUTES.iter() {
+</span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">if</span> req.uri().path().starts_with(ignore_route) {
+</span></span><span style="display:flex;"><span>                     authenticate_pass <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>                     <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>                 }
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">if</span> <span style="color:#f92672">!</span>authenticate_pass {
+</span></span><span style="display:flex;"><span>                 <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> Some(pool) <span style="color:#f92672">=</span> req.extensions().get::<span style="color:#f92672">&lt;</span>Extension<span style="color:#f92672">&lt;</span>Pool<span style="color:#f92672">&gt;&gt;</span>() {
+</span></span><span style="display:flex;"><span>                     info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Connecting to database...&#34;</span>);
+</span></span><span style="display:flex;"><span>                     <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> Some(auth_header) <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                         req.headers().get(constants::AUTHORIZATION)
+</span></span><span style="display:flex;"><span>                     {
+</span></span><span style="display:flex;"><span>                         info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Parsing authorization header...&#34;</span>);
+</span></span><span style="display:flex;"><span>                         <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> Ok(auth_str) <span style="color:#f92672">=</span> auth_header.to_str() {
+</span></span><span style="display:flex;"><span>                             <span style="color:#66d9ef">if</span> auth_str.starts_with(<span style="color:#e6db74">&#34;bearer&#34;</span>)
+</span></span><span style="display:flex;"><span>                                 <span style="color:#f92672">||</span> auth_str.starts_with(<span style="color:#e6db74">&#34;Bearer&#34;</span>)
+</span></span><span style="display:flex;"><span>                             {
+</span></span><span style="display:flex;"><span>                                 info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Parsing token...&#34;</span>);
+</span></span><span style="display:flex;"><span>                                 <span style="color:#66d9ef">let</span> token <span style="color:#f92672">=</span> auth_str[<span style="color:#ae81ff">6</span><span style="color:#f92672">..</span>auth_str.len()].trim();
+</span></span><span style="display:flex;"><span>                                 <span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> Ok(token_data) <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>                                     token_utils::decode_token(token.to_string())
+</span></span><span style="display:flex;"><span>                                 {
+</span></span><span style="display:flex;"><span>                                     info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Decoding token...&#34;</span>);
+</span></span><span style="display:flex;"><span>                                     <span style="color:#66d9ef">if</span> token_utils::validate_token(<span style="color:#f92672">&amp;</span>token_data, pool)
+</span></span><span style="display:flex;"><span>                                         .is_ok()
+</span></span><span style="display:flex;"><span>                                     {
+</span></span><span style="display:flex;"><span>                                         info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Valid token&#34;</span>);
+</span></span><span style="display:flex;"><span>                                         authenticate_username <span style="color:#f92672">=</span> token_data.claims.user_name;
+</span></span><span style="display:flex;"><span>                                         authenticate_pass <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>                                     } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                                         error<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Invalid token&#34;</span>);
+</span></span><span style="display:flex;"><span>                                     }
+</span></span><span style="display:flex;"><span>                                 }
+</span></span><span style="display:flex;"><span>                             }
+</span></span><span style="display:flex;"><span>                         }
+</span></span><span style="display:flex;"><span>                     }
+</span></span><span style="display:flex;"><span>                 }
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> authenticate_pass {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">let</span> vals <span style="color:#f92672">=</span> CasbinVals {
+</span></span><span style="display:flex;"><span>                 subject: <span style="color:#a6e22e">authenticate_username</span>,
+</span></span><span style="display:flex;"><span>                 domain: None,
+</span></span><span style="display:flex;"><span>             };
+</span></span><span style="display:flex;"><span>             req.extensions_mut().insert(vals);
+</span></span><span style="display:flex;"><span>             Box::pin(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">move</span> { 
+</span></span><span style="display:flex;"><span>                 Ok(inner.call(req).<span style="color:#66d9ef">await</span><span style="color:#f92672">?</span>.map(body::boxed))
+</span></span><span style="display:flex;"><span>              })
+</span></span><span style="display:flex;"><span>         } <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>             Box::pin(<span style="color:#66d9ef">async</span> <span style="color:#66d9ef">move</span>{
+</span></span><span style="display:flex;"><span>                 Ok(Json(ResponseBody::new(constants::MESSAGE_TOKEN_MISSING, constants::EMPTY)).into_response())
+</span></span><span style="display:flex;"><span>             })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>         }
+</span></span></code></pre></div><p>Above is the logic implemented for the auth.rs, which is supposed to respond to the request in this case. It basically bypass some account routes which are present in Constants.rs and does token validation(token is extracted from request headers) using <code>validate_token</code> for the routes which couldn&rsquo;t be bypassed.</p>
+<p>Ignore routes:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">const</span> IGNORE_ROUTES: [<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">str</span>; <span style="color:#ae81ff">4</span>] <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;api/auth/register&#34;</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;api/auth/signin&#34;</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;api/users&#34;</span>,
+</span></span><span style="display:flex;"><span>     <span style="color:#e6db74">&#34;api/user&#34;</span>,
+</span></span><span style="display:flex;"><span> ];
+</span></span></code></pre></div><h3 id="define-structure-of-mainrs-and-enforce-policies-in-backend">Define structure of main.rs and enforce policies in backend</h3>
+<p>The basic skeleton of the main.rs should look like:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// EXTRACT DATA FROM .env FILE TO GET app_host, app_url, pool_size, app_port, app_database
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// READ .csv FILE AND ADD/ENFORCE THE POLICIES IN casbin-rules TABLE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// IMPLEMENT CASBIN MIDDLEWARE
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// SET ROUTES USING axum::Router
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// HOST THE SERVER
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>} 
+</span></span></code></pre></div><p><strong>Extract data from .env file</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span> dotenv::dotenv().expect(<span style="color:#e6db74">&#34;Failed to read .env file, please add it&#34;</span>);
+</span></span><span style="display:flex;"><span>     std::env::set_var(<span style="color:#e6db74">&#34;RUST_LOG&#34;</span>, <span style="color:#e6db74">&#34;actix_web=debug&#34;</span>);
+</span></span><span style="display:flex;"><span>     env_logger::init();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> app_host <span style="color:#f92672">=</span> env::var(<span style="color:#e6db74">&#34;APP_HOST&#34;</span>).expect(<span style="color:#e6db74">&#34;APP_HOST must be set.&#34;</span>);
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> app_port <span style="color:#f92672">=</span> env::var(<span style="color:#e6db74">&#34;APP_PORT&#34;</span>).expect(<span style="color:#e6db74">&#34;APP_PORT must be set.&#34;</span>);
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> app_url <span style="color:#f92672">=</span> format!(<span style="color:#e6db74">&#34;{}:{}&#34;</span>, <span style="color:#f92672">&amp;</span>app_host, <span style="color:#f92672">&amp;</span>app_port);
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> database_url <span style="color:#f92672">=</span> std::env::var(<span style="color:#e6db74">&#34;DATABASE_URL&#34;</span>).expect(<span style="color:#e6db74">&#34;DATABASE_URL must be set&#34;</span>);
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">let</span> pool_size: <span style="color:#66d9ef">u32</span> <span style="color:#f92672">=</span> std::env::var(<span style="color:#e6db74">&#34;POOL_SIZE&#34;</span>)
+</span></span><span style="display:flex;"><span>         .ok()
+</span></span><span style="display:flex;"><span>         .and_then(<span style="color:#f92672">|</span>s<span style="color:#f92672">|</span> s.parse().ok())
+</span></span><span style="display:flex;"><span>         .unwrap_or(<span style="color:#ae81ff">8</span>);
+</span></span></code></pre></div><p><code>.env</code> file looks like</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-.env" data-lang=".env"><span style="display:flex;"><span>APP_HOST<span style="color:#f92672">=</span>127.0.0.1
+</span></span><span style="display:flex;"><span>APP_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span>DATABASE_URL<span style="color:#f92672">=</span>postgres://postgres:postgresAdmin@127.0.0.1:5432/casbintest
+</span></span><span style="display:flex;"><span>POOL_SIZE<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>HASH_ROUNDS<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span> 
+</span></span></code></pre></div><p><strong>Enforce Policies</strong></p>
+<p>There are preset policies defined in <code>.csv</code> file and they are needed to be added to the backend(using diesel adapter) before we start the operation of the application. We read them using the <code>csv utils</code> as vector and add them to casbin-rules using <code>enforcer.add_policy()</code>. It is important to classify the read vector into <code>p</code>(policy) and <code>g</code>(named_grouping_policy), hence a conditional is implemented which separates them.</p>
+<p>Following code helps in understanding how policies are added to casbin-rules table</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> preset_rules <span style="color:#f92672">=</span> load_csv(walk_csv(<span style="color:#e6db74">&#34;.&#34;</span>));
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">mut</span> policy <span style="color:#66d9ef">in</span> preset_rules {
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">let</span> ptype <span style="color:#f92672">=</span> policy.remove(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> ptype.starts_with(<span style="color:#e6db74">&#39;p&#39;</span>) {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">match</span> clone_enforcer.write().<span style="color:#66d9ef">await</span>.add_policy(policy).<span style="color:#66d9ef">await</span> {
+</span></span><span style="display:flex;"><span>                 Ok(_) <span style="color:#f92672">=&gt;</span> info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Present policies(p) added successfully&#34;</span>),
+</span></span><span style="display:flex;"><span>                 Err(err) <span style="color:#f92672">=&gt;</span> error<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Present policies(p) add error: {}&#34;</span>, err.to_string()),
+</span></span><span style="display:flex;"><span>             };
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>         } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> ptype.starts_with(<span style="color:#e6db74">&#39;g&#39;</span>) {
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">match</span> clone_enforcer
+</span></span><span style="display:flex;"><span>                 .write()
+</span></span><span style="display:flex;"><span>                 .<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>                 .add_named_grouping_policy(<span style="color:#f92672">&amp;</span>ptype, policy)
+</span></span><span style="display:flex;"><span>                 .<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>             {
+</span></span><span style="display:flex;"><span>                 Ok(_) <span style="color:#f92672">=&gt;</span> info<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Preset policies(g) added successfully&#34;</span>),
+</span></span><span style="display:flex;"><span>                 Err(err) <span style="color:#f92672">=&gt;</span> error<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Preset policies(g) add error: {}&#34;</span>, err.to_string()),
+</span></span><span style="display:flex;"><span>             }
+</span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>         } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>             unreachable!()
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>     }
+</span></span></code></pre></div><p><strong>Set Routes and host server</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> app <span style="color:#f92672">=</span> Router::new()
+</span></span><span style="display:flex;"><span>         .layer(Extension(pool.clone()))
+</span></span><span style="display:flex;"><span>         .layer(Extension(clone_enforcer))
+</span></span><span style="display:flex;"><span>         .route(<span style="color:#e6db74">&#34;/api/auth/register&#34;</span>, post(user_api::register))
+</span></span><span style="display:flex;"><span>         .route(<span style="color:#e6db74">&#34;/api/auth/signin&#34;</span>, post(user_api::signin))
+</span></span><span style="display:flex;"><span>         .route(<span style="color:#e6db74">&#34;/api/users&#34;</span>, get(user_api::get_all_user))
+</span></span><span style="display:flex;"><span>         .route(<span style="color:#e6db74">&#34;/api/user/:id&#34;</span>, get(user_api::get_user))
+</span></span><span style="display:flex;"><span>         .route(<span style="color:#e6db74">&#34;/api/admin/:id&#34;</span>, put(user_api::update_user))
+</span></span><span style="display:flex;"><span>         .route(<span style="color:#e6db74">&#34;/api/admin/:id&#34;</span>, delete(user_api::delete_user))
+</span></span><span style="display:flex;"><span>         .layer(casbin_middleware.clone())
+</span></span><span style="display:flex;"><span>         .layer(middleware::auth::AuthLayer);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>     axum::Server::bind(<span style="color:#f92672">&amp;</span>app_url.parse().unwrap())
+</span></span><span style="display:flex;"><span>         .serve(app.into_make_service())
+</span></span><span style="display:flex;"><span>         .<span style="color:#66d9ef">await</span>
+</span></span><span style="display:flex;"><span>         .unwrap();
+</span></span></code></pre></div><p>Server is hosted at <code>127.0.0.1/8080</code></p>
+<h2 id="next-week-target">Next Week target</h2>
+<ol>
+<li>Add remaining api commands, make clippy happy, resolve any present error.</li>
+<li>Start with casbin-openraft</li>
+</ol>
+]]></content>
+        </item>
         
         <item>
             <title>GSoC: Midterm Evaluation</title>
