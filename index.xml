@@ -6,7 +6,17 @@
     <description>Recent content on Hello, Siddhesh Kanawade here</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Aug 2022 02:10:49 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 19 Aug 2022 19:41:19 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GSoC: Work Summary till now</title>
+      <link>https://siddheshkanawade.github.io/posts/summ/</link>
+      <pubDate>Fri, 19 Aug 2022 19:41:19 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/posts/summ/</guid>
+      <description>Work Summary till Now Last Updated: 19th August 2022
+Task Accomplishment till now Task Description Task Status Time Devoted casbin-grpc The casbin-grpc repository was not maintained in a while and had incomplete code. So I was supposed to maintain the repository. Given to another contributor, I took on to develop axum-casbin-auth. Devoted some time to understand the repository and what is required to do 1 week axum-casbin-auth Implement axum web framework(middleware) with casbin.</description>
+    </item>
+    
     <item>
       <title>Geoclassifier-Granule.ai</title>
       <link>https://siddheshkanawade.github.io/blogs/geoclassifier/</link>

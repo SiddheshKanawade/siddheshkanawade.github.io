@@ -5,8 +5,120 @@
         <description>Recent content in Posts on Hello, Siddhesh Kanawade here</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en-us</language>
-        <lastBuildDate>Fri, 05 Aug 2022 01:14:22 +0530</lastBuildDate>
+        <lastBuildDate>Fri, 19 Aug 2022 19:41:19 +0530</lastBuildDate>
         <atom:link href="https://siddheshkanawade.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>GSoC: Work Summary till now</title>
+            <link>https://siddheshkanawade.github.io/posts/summ/</link>
+            <pubDate>Fri, 19 Aug 2022 19:41:19 +0530</pubDate>
+            
+            <guid>https://siddheshkanawade.github.io/posts/summ/</guid>
+            <description>Work Summary till Now Last Updated: 19th August 2022
+Task Accomplishment till now Task Description Task Status Time Devoted casbin-grpc The casbin-grpc repository was not maintained in a while and had incomplete code. So I was supposed to maintain the repository. Given to another contributor, I took on to develop axum-casbin-auth. Devoted some time to understand the repository and what is required to do 1 week axum-casbin-auth Implement axum web framework(middleware) with casbin.</description>
+            <content type="html"><![CDATA[<h2 id="work-summary-till-now">Work Summary till Now</h2>
+<p>Last Updated: 19th August 2022</p>
+<h3 id="task-accomplishment-till-now">Task Accomplishment till now</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Task</th>
+<th style="text-align:center">Description</th>
+<th style="text-align:center">Task Status</th>
+<th style="text-align:center">Time Devoted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">casbin-grpc</td>
+<td style="text-align:center">The casbin-grpc repository was not maintained in a while and had incomplete code. So I was supposed to maintain the repository.</td>
+<td style="text-align:center">Given to another contributor, I took on to develop axum-casbin-auth. Devoted some time to understand the repository and what is required to do</td>
+<td style="text-align:center">1 week</td>
+</tr>
+<tr>
+<td style="text-align:center">axum-casbin-auth</td>
+<td style="text-align:center">Implement axum web framework(middleware) with casbin. Its a access control middleware for axum framework</td>
+<td style="text-align:center">Completed</td>
+<td style="text-align:center">2.5 Weeks</td>
+</tr>
+<tr>
+<td style="text-align:center">casbin-rs/examples</td>
+<td style="text-align:center">The examples repository was not updated since, I had to update the dependencies and resolve the upcoming errors. Also, there is reimport of tokio which I need to resolve</td>
+<td style="text-align:center">Completed</td>
+<td style="text-align:center">1.5 week</td>
+</tr>
+<tr>
+<td style="text-align:center">axum-middleware-example</td>
+<td style="text-align:center">Develop a real-world example using axum-casbin-auth</td>
+<td style="text-align:center">Completed</td>
+<td style="text-align:center">2.5 weeks</td>
+</tr>
+<tr>
+<td style="text-align:center">casbin-grpc</td>
+<td style="text-align:center">Make casbin-grpc compile and run</td>
+<td style="text-align:center">The another contributor withdrawn from the GSoC program and hence this task was reassigned to me. ONGOING</td>
+<td style="text-align:center">1.5 weeks(still on going)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pr-count">PR count</h3>
+<h4 id="casbin-rsaxum-casbin-auth">casbin-rs/axum-casbin-auth</h4>
+<ol>
+<li><a href="https://github.com/casbin-rs/axum-casbin-auth/pull/1">feat: Axum Middleware Integration</a>: <br>
+Task accomplished by this PR: <br>
+<input checked="" disabled="" type="checkbox"> Axum middleware <br>
+<input checked="" disabled="" type="checkbox"> Write tests for Axum middleware example \</li>
+</ol>
+<p>Total Lines of code modified: <strong>+792 -1</strong> <br>
+Total Commits: <strong>9</strong> <br>
+Status: <strong>MERGED</strong></p>
+<h4 id="casbin-rsexamples">casbin-rs/examples</h4>
+<ol>
+<li><a href="https://github.com/casbin-rs/examples/pull/72">fix: Update dependencies, ensure build success and add axum-middleware-example</a>
+Task accomplished by this PR: <br>
+<input checked="" disabled="" type="checkbox"> Update dependencies to their latest version. solved <a href="https://github.com/casbin-rs/examples/pull/71">#71</a> <br>
+<input checked="" disabled="" type="checkbox"> Both tokio and async-std features of casbin are enabled, disable one to ensure casbin compile successfully<br>
+<input checked="" disabled="" type="checkbox"> Make <code>actix-fileadapter-rbac</code> compile successfully after updating the dependencies <br>
+<input checked="" disabled="" type="checkbox"> Remove the actix component version conflict and successfully compile <code>actix-middleware-example</code> <br>
+<input checked="" disabled="" type="checkbox"> Remove the deprecated calls after updating dependencies and successfully compile <code>ntex-fileadapter-acl</code> <br>
+<input checked="" disabled="" type="checkbox"> Add <code>axum-middleware-example</code>
+<input checked="" disabled="" type="checkbox"> Make clippy happy \</li>
+</ol>
+<p>Total Lines of code modified: <strong>+1,204 −76</strong> <br>
+Total Commits: <strong>19</strong> <br>
+Status: <strong>UNDER REVIEW</strong></p>
+<ol start="2">
+<li><a href="https://github.com/casbin-rs/actix-casbin/pull/25">fix: Update tokio</a></li>
+</ol>
+<p>Total Lines of code modified: <strong>+3 -3</strong> <br>
+Total Commits: <strong>2</strong> <br>
+Status: <strong>MERGED</strong></p>
+<ol start="3">
+<li><a href="https://github.com/casbin-rs/actix-casbin-auth/pull/36">fix: corrected the readme file</a></li>
+</ol>
+<p>Total Lines of code modified: <strong>+2 -4</strong> <br>
+Total Commits: <strong>3</strong> <br>
+Status: <strong>MERGED</strong></p>
+<h4 id="casbin-rsgrpc">casbin-rs/grpc</h4>
+<ol>
+<li><a href="https://github.com/casbin-rs/casbin-grpc/pull/9">fix: Make casbin-grpc run</a>
+Task accomplished by this PR: <br>
+<input checked="" disabled="" type="checkbox"> Update prost, tonic, make new proto.rs <br>
+<input checked="" disabled="" type="checkbox"> Management apis, functions under <code>rpc_calls.rs</code> were not implemented <br>
+<input disabled="" type="checkbox"> Resolve enforcer(m, a) <br>
+<input disabled="" type="checkbox"> Resolve abac policy input logic and enforce(params) error <br>
+<input disabled="" type="checkbox"> Reference and borrow errors in rpc_calls.rs \</li>
+</ol>
+<p>Total Lines of code modified: <strong>+2,056 −3,797</strong> <br>
+Total Commits: <strong>5</strong> <br>
+Status: <strong>DRAFT</strong>(Ongoing)</p>
+<h3 id="summary">Summary</h3>
+<p>Total PRs: <strong>5</strong> <br>
+Total Commits: <strong>38</strong> <br>
+Total Weeks: <strong>9+</strong> <br>
+Total Lines of Code changed: <strong>+4057 -3881</strong></p>
+]]></content>
+        </item>
         
         <item>
             <title>GSoC: Week 8 and 9</title>
