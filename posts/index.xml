@@ -84,7 +84,7 @@ Total Commits: <strong>9</strong> <br>
 Status: <strong>MERGED</strong></p>
 <h4 id="casbin-rsexamples">casbin-rs/examples</h4>
 <ol>
-<li><a href="https://github.com/casbin-rs/examples/pull/72">fix: Update dependencies, ensure build success and add axum-middleware-example</a>
+<li><a href="https://github.com/casbin-rs/examples/pull/72">fix: Update dependencies, ensure build success and add axum-middleware-example</a> <br>
 Task accomplished by this PR: <br>
 <input checked="" disabled="" type="checkbox"> Update dependencies to their latest version. solved <a href="https://github.com/casbin-rs/examples/pull/71">#71</a> <br>
 <input checked="" disabled="" type="checkbox"> Both tokio and async-std features of casbin are enabled, disable one to ensure casbin compile successfully<br>
@@ -111,7 +111,7 @@ Total Commits: <strong>3</strong> <br>
 Status: <strong>MERGED</strong></p>
 <h4 id="casbin-rsgrpc">casbin-rs/grpc</h4>
 <ol>
-<li><a href="https://github.com/casbin-rs/casbin-grpc/pull/9">fix: Make casbin-grpc run</a>
+<li><a href="https://github.com/casbin-rs/casbin-grpc/pull/9">fix: Make casbin-grpc run</a> <br>
 Task accomplished by this PR: <br>
 <input checked="" disabled="" type="checkbox"> Update prost, tonic, make new proto.rs <br>
 <input checked="" disabled="" type="checkbox"> Management apis, functions under <code>rpc_calls.rs</code> were not implemented <br>
