@@ -8,7 +8,7 @@
     <language>en-us</language>
     <lastBuildDate>Fri, 19 Aug 2022 20:46:21 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>GSoC: Week 10</title>
+      <title>GSoC: Week 8</title>
       <link>https://siddheshkanawade.github.io/posts/week10/</link>
       <pubDate>Fri, 19 Aug 2022 20:46:21 +0530</pubDate>
       
@@ -37,11 +37,11 @@ Task Accomplishment till now Task Description Task Status Time Devoted casbin-gr
     </item>
     
     <item>
-      <title>GSoC: Week 8 and 9</title>
-      <link>https://siddheshkanawade.github.io/posts/week8n9/</link>
+      <title>GSoC: Week 7[Post midterm evaluation]</title>
+      <link>https://siddheshkanawade.github.io/posts/week7_1/</link>
       <pubDate>Fri, 05 Aug 2022 01:14:22 +0530</pubDate>
       
-      <guid>https://siddheshkanawade.github.io/posts/week8n9/</guid>
+      <guid>https://siddheshkanawade.github.io/posts/week7_1/</guid>
       <description>Duration 1st August - 14th August 2022
 Tasks: ✅ Axum real-world example:
 ✅ add register, delete and update api services ✅ make clippy happy ✅ Merge poem-todo ✅ Ensure all checks pass in Github Actions 🟩 casbin-grpc:
@@ -50,7 +50,7 @@ register, update, delete services added make clippy happy, remove unnecessary co
     </item>
     
     <item>
-      <title>GSoC: Week 7</title>
+      <title>GSoC: Week 7[During midterm Evaluation]</title>
       <link>https://siddheshkanawade.github.io/posts/week7/</link>
       <pubDate>Sat, 30 Jul 2022 01:08:39 +0530</pubDate>
       
