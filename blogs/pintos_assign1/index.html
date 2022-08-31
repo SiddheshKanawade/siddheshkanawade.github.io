@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Siddhesh Kanawade ">
+<meta name="description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Threads in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+Alarm Clock Data Structures In thread." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://siddheshkanawade.github.io/blogs/pintos_assign1/" />
+
+
+    <title>
+        
+            CS 301: Operating Systems: Assignment 1 :: Hello, Siddhesh Kanawade here 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://siddheshkanawade.github.io/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://siddheshkanawade.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://siddheshkanawade.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://siddheshkanawade.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://siddheshkanawade.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://siddheshkanawade.github.io/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://siddheshkanawade.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="CS 301: Operating Systems: Assignment 1">
+<meta itemprop="description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Threads in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+Alarm Clock Data Structures In thread."><meta itemprop="datePublished" content="2022-08-30T23:38:03+05:30" />
+<meta itemprop="dateModified" content="2022-08-30T23:38:03+05:30" />
+<meta itemprop="wordCount" content="1783"><meta itemprop="image" content="https://siddheshkanawade.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://siddheshkanawade.github.io"/>
+
+<meta name="twitter:title" content="CS 301: Operating Systems: Assignment 1"/>
+<meta name="twitter:description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Threads in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+Alarm Clock Data Structures In thread."/>
+
+
+
+    <meta property="og:title" content="CS 301: Operating Systems: Assignment 1" />
+<meta property="og:description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Threads in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+Alarm Clock Data Structures In thread." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://siddheshkanawade.github.io/blogs/pintos_assign1/" /><meta property="og:image" content="https://siddheshkanawade.github.io"/><meta property="article:section" content="blogs" />
+<meta property="article:published_time" content="2022-08-30T23:38:03+05:30" />
+<meta property="article:modified_time" content="2022-08-30T23:38:03+05:30" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-08-30 23:38:03 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://siddheshkanawade.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text">Welcome/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://siddheshkanawade.github.io/about/">About</a></li><li><a href="https://siddheshkanawade.github.io/blogs/">Blog</a></li><li><a href="https://siddheshkanawade.github.io/posts/">GSoC</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://siddheshkanawade.github.io/blogs/pintos_assign1/">CS 301: Operating Systems: Assignment 1</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h3 id="group-members">Group Members</h3>
+<p>Siddhesh Kanawade: <a href="mailto:siddhesh.kanawade@iitgn.ac.in">siddhesh.kanawade@iitgn.ac.in</a> <br>
+Kushgra Jain: <a href="mailto:kushagra.jain@iitgn.ac.in">kushagra.jain@iitgn.ac.in</a> <br>
+Utkarsh Mishra: <a href="mailto:utkarsh.mishra@iitgn.ac.in">utkarsh.mishra@iitgn.ac.in</a></p>
+<h3 id="preliminaries">Preliminaries</h3>
+<p>The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Threads in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.</p>
+<h3 id="alarm-clock">Alarm Clock</h3>
+<h4 id="data-structures">Data Structures</h4>
+<p>In <code>thread.h</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list_elem sleepelem;         <span style="color:#75715e">/* List element for blocking threads list */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int64_t</span> block_time;                <span style="color:#75715e">/* Defining the remaining ticks */</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In <code>thread.c</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">struct</span> list sleep_list;      <span style="color:#75715e">/* List for sleeping/blocked threads, thread will be added on call of timer_sleep() */</span>
+</span></span></code></pre></div><p>Files to be modified:</p>
+<ol>
+<li>threads/thread.h</li>
+<li>threads/thread.c</li>
+<li>threads/timer.c</li>
+</ol>
+<h4 id="algorithms">Algorithms</h4>
+<p>The main shortcomings of the formal codes is that, all threads ( including the sleeping threads and normal threads ) share the same storage space.
+From the theory, its pretty clear that all the threads share the same shared memory. Our aim is to modify the system call <code>timer_alarm(int ticks)</code>. This is a system call that wakes up a process in <code>ticks</code> amount of time. We define <code>sleep_list</code> to store the sleeping/blocked threads. We call the <code>timer_sleep</code> function to check whether thread has to be in sleep or in ready list. It calls the <code>thread_sleep</code> function if their is yet time for the thread to wake up.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">timer_sleep</span> (<span style="color:#66d9ef">int64_t</span> ticks) 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int64_t</span> start <span style="color:#f92672">=</span> timer_ticks();
+</span></span><span style="display:flex;"><span>  ASSERT (intr_get_level () <span style="color:#f92672">==</span> INTR_ON);
+</span></span><span style="display:flex;"><span>  intr_disable ();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(timer_elapsed(start) <span style="color:#f92672">&lt;</span> ticks)
+</span></span><span style="display:flex;"><span>  	thread_sleep (ticks);
+</span></span><span style="display:flex;"><span>  intr_set_level (INTR_ON);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Following is the <code>thread_sleep()</code> functions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">thread_sleep</span>(<span style="color:#66d9ef">int64_t</span> ticks)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>cur <span style="color:#f92672">=</span> thread_current();
+</span></span><span style="display:flex;"><span>  cur<span style="color:#f92672">-&gt;</span>block_time <span style="color:#f92672">=</span> ticks;
+</span></span><span style="display:flex;"><span>  list_push_back(<span style="color:#f92672">&amp;</span>sleep_list, <span style="color:#f92672">&amp;</span>cur<span style="color:#f92672">-&gt;</span>sleepelem);
+</span></span><span style="display:flex;"><span>  thread_block();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The thread_sleep() function push_back the thread into the sleep_list. We then call <code>thread_block</code> which updates the state of thread as Blocked. From <code>thread_block</code> the <code>schedule</code> function is called and then a series of calls are made to keep the track on global time and time remaining for the thread to wake. When thread is waked up, its then unblocked using <code>thread_unblock</code> and added to the ready_list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span> <span style="color:#66d9ef">if</span> (t<span style="color:#f92672">-&gt;</span>block_time <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        thread_unblock(t);
+</span></span><span style="display:flex;"><span>        list_remove(temp);
+</span></span><span style="display:flex;"><span>      }
+</span></span></code></pre></div><p>Other helpful functions:</p>
+<ol>
+<li><code>timer_ticks()</code> =&gt; Returns the number of timer ticks since the OS booted</li>
+<li><code>timer_elapsed(int64_t then)</code> =&gt; Returns the number of timer ticks elapsed since THEN, which should be a value once returned by <code>timer_clicks()</code></li>
+<li><code>thread_yield (void)</code> =&gt; “Yields” the CPU and inserts the thread to the <code>ready_list</code></li>
+</ol>
+<h4 id="synchronization">Synchronization</h4>
+<ol>
+<li>
+<p><strong>Briefly describe what happens in a call to timer_sleep(), including the effects of the timer interrupt handler.</strong> <br>
+The process switches between ready state and running state to check if the alarm time has reached or not. As a result, it keeps crunching CPU cycles while it does the checking.. When <code>timer_sleep</code> is called, it checks for the elapsed time and block time of the thread, based on that it triggers the adding of thread to <code>sleep_list</code> or not. Remaining time for thread to wake is updated at every tick and when remaining time is zero or less that zero, thread is unblocked. Also, until and unless <code>timer_sleep</code> is not called in interrupt context, our operations are thread safe.</p>
+</li>
+<li>
+<p><strong>What steps are taken to minimize the amount of time spent in the timer interrupt handler?</strong> <br>
+The amount of time spent can be minmized if we use the interupt disable during the operation. This makes the process almost <code>atomic</code>.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> intr_level old_level <span style="color:#f92672">=</span> intr_disable ();
+</span></span><span style="display:flex;"><span>...
+</span></span><span style="display:flex;"><span>intr_set_level (old_level);
+</span></span></code></pre></div><h4 id="rationale">Rationale</h4>
+<p>Pintos had <code>busy waiting</code> by default. Busy waiting is a synchronization technique in which a process continuously checks if a condition is true before continuing to execute. In the meanwhile, it does not let go of the processor. Which is wasteful as the process keeps looping to check for the condition. Busy waiting is usually not desirable as it is not an efficient use of the Processor’s resources. Our aim here is to modify PintOS such that it uses <code>sleep/wakeup</code> for alarm. It ensures that the threads in the <code>sleep_list</code> doesn&rsquo;t consume any CPU cycles and are resource efficient. The threads in the <code>sleep_list</code> are simply pushed back and not placed in order, hence searching can be expensive in some cases.</p>
+<p>The other approaches that can be thought of is like having just two lists: <code>ready_list</code> and <code>all_list</code> and the elements not in <code>ready_list</code> but in <code>all_list</code> are the elements of the <code>sleep_list</code> this approach will be inefficient when we have lot of ready state threads and very less sleeping threads, thus the searching will be expensive in that case.</p>
+<h3 id="priority-scheduling">Priority Scheduling</h3>
+<p>As of now, Pintos uses FIFO concept for scheduling. We need to implement the Priority scheduling so that the threads with higher priority are executed first and then the threads with lesser priority. Naive description of the process is that we select a thread from the <code>ready_list</code> whose priority is highest and execute it. Also, while inserting the new thread to the <code>ready_list</code>, we check its priority with the current running thread.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(priority_curr <span style="color:#f92672">&lt;</span> priority_new_thread) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Execute new thread and put curr thread to ready list
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Keep executing curr thread
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>Also, when selecting a thread from the set of threads waiting for a lock, select the one with highest priority.</p>
+<h4 id="data-structures-1">Data Structures</h4>
+<ol>
+<li>In <code>thread.h</code>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> real_priority;     <span style="color:#75715e">/* Real Priority while being donated*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list locks;      <span style="color:#75715e">/*All the locks that are being held in waiting*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> lock <span style="color:#f92672">*</span>curr_lock; <span style="color:#75715e">/* Thread is locked by this lock*/</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li>In <code>synch.h</code>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> lock {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list_elem elem; <span style="color:#75715e">/*list elem, store in locks held in struct thread, linked list node */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> max_priority;      <span style="color:#75715e">/*The maximium priority of all threads locked by this lock, that is from the waiters list.*/</span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="3">
+<li>In <code>synch.c</code> :</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> semaphore_elem {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> priority;               <span style="color:#75715e">/*The maximum priority within the waiters in WAITERS of the semaphore*/</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="algorithms-1">Algorithms</h4>
+<ol>
+<li><strong>Next thread to run:</strong> <br>
+Our target is to make the threads execute based on some priority and to avoid corner cases like priority inversion. When we call <code>schedule()</code>, will call to run the next thread in sequence. The thread is supposed to be present in <code>ready_list</code>which will be sorted based on the priority of threads it contains. We update the status of thread to THREAD_READY when we add it to ready_list. We sort the <code>ready_list</code> in descending order of priority.</li>
+</ol>
+<p>Following are some helper funtions: <br>
+<strong>compare_piority()</strong></p>
+<p>Sort the threads in descending order of priority.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">compare_priority</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> list_elem <span style="color:#f92672">*</span>a, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> list_elem <span style="color:#f92672">*</span>b, <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>aux)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>t1 <span style="color:#f92672">=</span> list_entry(a, <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span>, elem);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>t2 <span style="color:#f92672">=</span> list_entry(b, <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span>, elem);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> t1<span style="color:#f92672">-&gt;</span>priority <span style="color:#f92672">&gt;</span> t2<span style="color:#f92672">-&gt;</span>priority;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>thread_set_priority()</strong></p>
+<p>It is responsible to set/update the real_priority of the current thread. To update the priority based on the threads requesting a particular lock, we used <code>thread_update_priority</code> funtion. We also have <code>locks_by_priority</code> comparator to sort the threads based on their priorities. Also, if the waiting threads in lock has a higher priority than the current thread, there will be priority donation.</p>
+<p>Waiters in the semaphores are sorted in descending order(as predicted) and <code>sema_up</code> wakes up the thread from the front and due to above constraint, that thread has the highest priority</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">thread_set_priority</span>(<span style="color:#66d9ef">int</span> new_priority)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> intr_level old_level <span style="color:#f92672">=</span> intr_disable();
+</span></span><span style="display:flex;"><span>  thread_current()<span style="color:#f92672">-&gt;</span>real_priority <span style="color:#f92672">=</span> new_priority;
+</span></span><span style="display:flex;"><span>  thread_update_priority(thread_current());
+</span></span><span style="display:flex;"><span>  intr_set_level(old_level);
+</span></span><span style="display:flex;"><span>  check_then_thread_yield();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">locks_by_priority</span>(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> list_elem <span style="color:#f92672">*</span>a, <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">struct</span> list_elem <span style="color:#f92672">*</span>b, <span style="color:#66d9ef">void</span> <span style="color:#f92672">*</span>aux)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> list_entry(a, <span style="color:#66d9ef">struct</span> lock, elem)<span style="color:#f92672">-&gt;</span>max_priority <span style="color:#f92672">&lt;=</span>
+</span></span><span style="display:flex;"><span>         list_entry(b, <span style="color:#66d9ef">struct</span> lock, elem)<span style="color:#f92672">-&gt;</span>max_priority;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Sets the real priority of the currrent thread and update the priority on the basis list of thread requesting the same lock. The <code>thread_update_priority(</code>) function has been created for this.</p>
+<p>The <code>compare_locks_by_priority</code> comparator compares the thread on the basis of  priority.</p>
+<p><strong>thread_unblock()</strong></p>
+<p>Thread unblock is called when we have to unblock/wake thread from sleep. Earlier we just pushed back the thread into ready_list, but now we need to add it in accordance with priority.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">thread_unblock</span>(<span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>t)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> intr_level old_level;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  ASSERT(is_thread(t));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  old_level <span style="color:#f92672">=</span> intr_disable();
+</span></span><span style="display:flex;"><span>  ASSERT(t<span style="color:#f92672">-&gt;</span>status <span style="color:#f92672">==</span> THREAD_BLOCKED);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Initially we were putting the new element at end of list, but now we have to maintain order hence use list_insert_ordered */</span>
+</span></span><span style="display:flex;"><span>  list_insert_ordered(<span style="color:#f92672">&amp;</span>ready_list, <span style="color:#f92672">&amp;</span>t<span style="color:#f92672">-&gt;</span>elem, compare_priority, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// list_push_back (&amp;ready_list, &amp;t-&gt;elem);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  t<span style="color:#f92672">-&gt;</span>status <span style="color:#f92672">=</span> THREAD_READY;
+</span></span><span style="display:flex;"><span>  intr_set_level(old_level);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Also, <code>thread_yield</code> has also been modified to support above logic.</p>
+<p><em><strong>Note:</strong></em> We have also created <code>thread_create()</code>, <code>thread_set_priority()</code>, <code>update_thread_priority()</code> and other functions which acts as base or helper function to satisfy the above constraint. Below is quick glance to some of them.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">check_then_thread_yield</span>(<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> intr_level old_level <span style="color:#f92672">=</span> intr_disable();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">bool</span> check <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>list_empty(<span style="color:#f92672">&amp;</span>ready_list) <span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>               list_entry(list_front(<span style="color:#f92672">&amp;</span>ready_list), <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span>, elem)<span style="color:#f92672">-&gt;</span>priority <span style="color:#f92672">&gt;</span> thread_get_priority();
+</span></span><span style="display:flex;"><span>  intr_set_level(old_level);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (check)
+</span></span><span style="display:flex;"><span>    thread_yield();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">thread_update_priority</span>(<span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>t)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> intr_level old_level <span style="color:#f92672">=</span> intr_disable();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">int</span> real_priority <span style="color:#f92672">=</span> t<span style="color:#f92672">-&gt;</span>real_priority;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (list_empty(<span style="color:#f92672">&amp;</span>t<span style="color:#f92672">-&gt;</span>locks))
+</span></span><span style="display:flex;"><span>    t<span style="color:#f92672">-&gt;</span>priority <span style="color:#f92672">=</span> real_priority;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> lock_priority <span style="color:#f92672">=</span> list_entry(list_max(<span style="color:#f92672">&amp;</span>t<span style="color:#f92672">-&gt;</span>locks, locks_by_priority, NULL),
+</span></span><span style="display:flex;"><span>                                   <span style="color:#66d9ef">struct</span> lock, elem)
+</span></span><span style="display:flex;"><span>                            <span style="color:#f92672">-&gt;</span>max_priority;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/* priority donation*/</span>
+</span></span><span style="display:flex;"><span>    t<span style="color:#f92672">-&gt;</span>priority <span style="color:#f92672">=</span> real_priority <span style="color:#f92672">&gt;</span> lock_priority <span style="color:#f92672">?</span> real_priority : lock_priority;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  intr_set_level(old_level);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ol start="2">
+<li><strong>lock_acquire():</strong></li>
+</ol>
+<p>The main function of lock_acquire is to do priority donation. We start by checking whether lock is held or not. Then update the priority if holder&rsquo;s priority is less than the priority of the current thread. Following function is responsible to rearrange the <code>ready_list</code> in accordance with the <code>holder_thread</code>. We need to repeat the process if the lock is locked by other locks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">rearrange_ready_threads</span>(<span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>t)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  ASSERT(t<span style="color:#f92672">-&gt;</span>status <span style="color:#f92672">==</span> THREAD_READY);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> intr_level old_level <span style="color:#f92672">=</span> intr_disable();
+</span></span><span style="display:flex;"><span>  list_remove(<span style="color:#f92672">&amp;</span>t<span style="color:#f92672">-&gt;</span>elem);
+</span></span><span style="display:flex;"><span>  list_insert_ordered(<span style="color:#f92672">&amp;</span>ready_list, <span style="color:#f92672">&amp;</span>t<span style="color:#f92672">-&gt;</span>elem, compare_priority, NULL);
+</span></span><span style="display:flex;"><span>  intr_set_level(old_level);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><code>sema_down()</code>, then the current thread will hold the lock. We put the lock into the struct to hold the locks of the thread. Then update the priority of lock and current thread. If next thread to run in the ready_list has a higher priority than the current thread, yield the CPU.</p>
+<ol start="3">
+<li><strong>Releasing a Lock:</strong> <br>
+Lock is released when thread is done performing its function and now can release the lock. To perform this operation, we set the holder as NULL and remove the lock from the list of held locks. Then update the priority of the current thread, if the lock is the last lock, then restore the real priority of the current thread.</li>
+</ol>
+<h4 id="synchronization-1">Synchronization</h4>
+<p>Disabling the interrupt makes the operations like <code>thread_set_priority()</code> atomic which avoids the race conditions. When priority of the current thread is smaller that any of the present threads in <code>ready_list</code> there should be CPU yielding. But since we disable the interrupt while changing priority and CPU yielding, these processes can be considered as atomic.</p>
+<h4 id="rationale-1">Rationale</h4>
+<p>In this example, we should be able to use different methods to sort the list, which should increase the efficiency of the program. Also, here, we have lot of functions which are crucial but easily accessible to the user. Hence we must define functions as private(if possible in C) which are supposed to have admin/superuser authorization.</p>
+<h3 id="outcome-of-the-assignment">OutCome of the Assignment</h3>
+<ol>
+<li><strong>Alarm Clock:</strong></li>
+</ol>
+<p><img src="https://siddheshkanawade.github.io/img/cs301/alarm-clock.png" alt="Image alt"></p>
+<ol start="2">
+<li><strong>Priority Scheduling:</strong></li>
+</ol>
+<p><img src="https://siddheshkanawade.github.io/img/cs301/ps.png" alt="Image alt"></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Made with ❤️ by Siddhesh Kanawade</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://siddheshkanawade.github.io/bundle.min.feebdc8d801e3fb1791305e362b6d11557f029604dd5b3c27e2686bc88787ee90ae1ccf0afe81bd7d959d7617cfe1fc73062aa82b4e1fa830d6941193d2cbddf.js" integrity="sha512-/uvcjYAeP7F5EwXjYrbRFVfwKWBN1bPCfiaGvIh4fukK4czwr&#43;gb19lZ12F8/h/HMGKqgrTh&#43;oMNaUEZPSy93w=="></script>
+
+
+
+    </body>
+</html>

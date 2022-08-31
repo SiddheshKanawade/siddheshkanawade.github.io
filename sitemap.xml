@@ -2,10 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://siddheshkanawade.github.io/posts/week10/</loc>
-    <lastmod>2022-08-19T20:46:21+05:30</lastmod>
+    <loc>https://siddheshkanawade.github.io/blogs/</loc>
+    <lastmod>2022-08-30T23:38:03+05:30</lastmod>
+  </url><url>
+    <loc>https://siddheshkanawade.github.io/blogs/pintos_assign1/</loc>
+    <lastmod>2022-08-30T23:38:03+05:30</lastmod>
   </url><url>
     <loc>https://siddheshkanawade.github.io/</loc>
+    <lastmod>2022-08-30T23:38:03+05:30</lastmod>
+  </url><url>
+    <loc>https://siddheshkanawade.github.io/posts/week10/</loc>
     <lastmod>2022-08-19T20:46:21+05:30</lastmod>
   </url><url>
     <loc>https://siddheshkanawade.github.io/posts/</loc>
@@ -13,9 +19,6 @@
   </url><url>
     <loc>https://siddheshkanawade.github.io/posts/summ/</loc>
     <lastmod>2022-08-19T19:41:19+05:30</lastmod>
-  </url><url>
-    <loc>https://siddheshkanawade.github.io/blogs/</loc>
-    <lastmod>2022-08-07T02:10:49+05:30</lastmod>
   </url><url>
     <loc>https://siddheshkanawade.github.io/blogs/geoclassifier/</loc>
     <lastmod>2022-08-07T02:10:49+05:30</lastmod>

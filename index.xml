@@ -6,7 +6,18 @@
     <description>Recent content on Hello, Siddhesh Kanawade here</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Aug 2022 20:46:21 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Aug 2022 23:38:03 +0530</lastBuildDate><atom:link href="https://siddheshkanawade.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CS 301: Operating Systems: Assignment 1</title>
+      <link>https://siddheshkanawade.github.io/blogs/pintos_assign1/</link>
+      <pubDate>Tue, 30 Aug 2022 23:38:03 +0530</pubDate>
+      
+      <guid>https://siddheshkanawade.github.io/blogs/pintos_assign1/</guid>
+      <description>Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Threads in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+Alarm Clock Data Structures In thread.</description>
+    </item>
+    
     <item>
       <title>GSoC: Week 8</title>
       <link>https://siddheshkanawade.github.io/posts/week10/</link>
