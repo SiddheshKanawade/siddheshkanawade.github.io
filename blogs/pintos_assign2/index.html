@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="Siddhesh Kanawade ">
+<meta name="description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Userprog in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+ARGUMENT PASSING &amp;mdash;- DATA STRUCTURES &amp;mdash;- The present data structures sufficed the requirement of this task and hence no new datastructures were created." />
+<meta name="keywords" content="" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="https://siddheshkanawade.github.io/blogs/pintos_assign2/" />
+
+
+    <title>
+        
+            CS 301: Operating Systems: Assignment 2 :: Hello, Siddhesh Kanawade here 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://siddheshkanawade.github.io/main.4e5c639214707eff609bb55fe49e183dee42258a73bc90e4cc7b0a84f900798a.css">
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://siddheshkanawade.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://siddheshkanawade.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://siddheshkanawade.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://siddheshkanawade.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://siddheshkanawade.github.io/safari-pinned-tab.svg" color="">
+    <link rel="shortcut icon" href="https://siddheshkanawade.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="">
+
+
+<meta itemprop="name" content="CS 301: Operating Systems: Assignment 2">
+<meta itemprop="description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Userprog in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+ARGUMENT PASSING &mdash;- DATA STRUCTURES &mdash;- The present data structures sufficed the requirement of this task and hence no new datastructures were created."><meta itemprop="datePublished" content="2022-10-09T21:20:22+05:30" />
+<meta itemprop="dateModified" content="2022-10-09T21:20:22+05:30" />
+<meta itemprop="wordCount" content="1805"><meta itemprop="image" content="https://siddheshkanawade.github.io"/>
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://siddheshkanawade.github.io"/>
+
+<meta name="twitter:title" content="CS 301: Operating Systems: Assignment 2"/>
+<meta name="twitter:description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Userprog in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+ARGUMENT PASSING &mdash;- DATA STRUCTURES &mdash;- The present data structures sufficed the requirement of this task and hence no new datastructures were created."/>
+
+
+
+    <meta property="og:title" content="CS 301: Operating Systems: Assignment 2" />
+<meta property="og:description" content="Group Members Siddhesh Kanawade: siddhesh.kanawade@iitgn.ac.in Kushgra Jain: kushagra.jain@iitgn.ac.in Utkarsh Mishra: utkarsh.mishra@iitgn.ac.in
+Preliminaries The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Userprog in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.
+ARGUMENT PASSING &mdash;- DATA STRUCTURES &mdash;- The present data structures sufficed the requirement of this task and hence no new datastructures were created." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://siddheshkanawade.github.io/blogs/pintos_assign2/" /><meta property="og:image" content="https://siddheshkanawade.github.io"/><meta property="article:section" content="blogs" />
+<meta property="article:published_time" content="2022-10-09T21:20:22+05:30" />
+<meta property="article:modified_time" content="2022-10-09T21:20:22+05:30" />
+
+
+
+
+
+
+
+    <meta property="article:published_time" content="2022-10-09 21:20:22 &#43;0530 IST" />
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    
+        <body>
+    
+    
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://siddheshkanawade.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">&gt;</span>
+            <span class="logo__text">Welcome/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://siddheshkanawade.github.io/about/">About</a></li><li><a href="https://siddheshkanawade.github.io/blogs/">Blog</a></li><li><a href="https://siddheshkanawade.github.io/posts/">GSoC</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+                <span class="theme-toggle not-selectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+   3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+   13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+ </svg></span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="https://siddheshkanawade.github.io/blogs/pintos_assign2/">CS 301: Operating Systems: Assignment 2</a></h2>
+
+            
+            
+            
+
+            <div class="post-content">
+                <h2 id="group-members">Group Members</h2>
+<p>Siddhesh Kanawade: <a href="mailto:siddhesh.kanawade@iitgn.ac.in">siddhesh.kanawade@iitgn.ac.in</a> <br>
+Kushgra Jain: <a href="mailto:kushagra.jain@iitgn.ac.in">kushagra.jain@iitgn.ac.in</a> <br>
+Utkarsh Mishra: <a href="mailto:utkarsh.mishra@iitgn.ac.in">utkarsh.mishra@iitgn.ac.in</a></p>
+<h2 id="preliminaries">Preliminaries</h2>
+<p>The code is highly self explanatory due to multiple comments and humanly readable variables and function names. The main goal of this assignment was to understand the Userprog in the Pintos Operating System. Also, please note that, the comments in the datastructure section are drafted to act as the description of the struct, enum, or data type.</p>
+<h2 id="argument-passing">ARGUMENT PASSING</h2>
+<p><strong>&mdash;- DATA STRUCTURES &mdash;-</strong> <br>
+The present data structures sufficed the requirement of this task and hence no new datastructures were created.</p>
+<p><strong>&mdash;- ALGORITHMS &mdash;-</strong></p>
+<h4 id="argument-passing-1">Argument Passing</h4>
+<p>Currently, <code>process_execute()</code> does not support passing arguments to new processes.  As per requirement, we had to split the input from the command line at spaces and take the first word as program name and the remaining as arguments. Example provided was process_execute(&ldquo;grep foo bar&rdquo;) should run grep passing two arguments foo and bar.</p>
+<p>To implement this, we have used the <code>strtok_r()</code> function to split the string from the command line, and the obtained words can now be used as the filenames and arguments.
+Once we have split the string, and have our file name, we create a new thread, naming it the same as the file name for convenience, call the start_process function with the file name and pass the arguments to <code>load()</code>.  and <code>setup_stack()</code>.
+The arguments and commands are pushed into the stack when the page is initialised.</p>
+<p><strong>process_execute:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>tid_t
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_execute</span> (<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>file_name) 
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>fn_copy;
+</span></span><span style="display:flex;"><span>  tid_t tid;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Make a copy of FILE_NAME.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     Otherwise there&#39;s a race between the caller and load(). */</span>
+</span></span><span style="display:flex;"><span>  fn_copy <span style="color:#f92672">=</span> palloc_get_page (<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (fn_copy <span style="color:#f92672">==</span> NULL)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> TID_ERROR;
+</span></span><span style="display:flex;"><span>  strlcpy (fn_copy, file_name, PGSIZE);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Create a new thread to execute FILE_NAME. */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Seperate file_name into two parts =&gt;  fn_argv0 for filename, save_ptr for other arguments  */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>fn_argv0, <span style="color:#f92672">*</span>save_ptr;
+</span></span><span style="display:flex;"><span>  fn_argv0 <span style="color:#f92672">=</span> strtok_r(fn_copy, <span style="color:#e6db74">&#34; &#34;</span>, <span style="color:#f92672">&amp;</span>save_ptr);
+</span></span><span style="display:flex;"><span>  tid <span style="color:#f92672">=</span> thread_create (fn_argv0, thread_current()<span style="color:#f92672">-&gt;</span>priority,
+</span></span><span style="display:flex;"><span>   start_process, save_ptr);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Let parent process wait until the child process successfully loads its executables */</span>
+</span></span><span style="display:flex;"><span>  sema_down(<span style="color:#f92672">&amp;</span>thread_current()<span style="color:#f92672">-&gt;</span>process_wait);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (tid <span style="color:#f92672">==</span> TID_ERROR)
+</span></span><span style="display:flex;"><span>    palloc_free_page (fn_copy); 
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> thread_current()<span style="color:#f92672">-&gt;</span>child_load_status;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="arranging-elememts-of-argv-in-right-order">Arranging elememts of argv[] in right order</h4>
+<p>We parse the strings in the order of last to first, in which the last string will be the command and the first one will be the last argument. For example, if we have  <code>run echo x</code>, then the first element would be <code>x</code> and <code>run</code> would be the last argument</p>
+<h4 id="avoiding-overflowing-the-stack-page">Avoiding overflowing the stack page</h4>
+<p>When overflowing would occur, exit(-1) will be executed and overflowing would be detected. Its basically based on concept of page fault exception.</p>
+<p><strong>&mdash;- RATIONALE &mdash;-</strong></p>
+<h4 id="why-does-pintos-implement-strtok_r-but-not-strtok">Why does Pintos implement strtok_r() but not strtok()</h4>
+<p>The <code>strtok_r()</code> function is the restartable version of <code>strtok()</code>. We can use it in nested loops, several threads at once, etc.  It returns a pointer which we can use to restart on the same string. We can not do the same with the strtok(). Using it can cause errors and the program could crash.</p>
+<h4 id="why-does-pintos-implement-strtok_r-but-not-strtok-1">Why does Pintos implement strtok_r() but not strtok()</h4>
+<p>In the Pintos approach, the memory needed for parsing arguments is spent by the kernel. This is not advantageous since, if the kernel runs out of memory, the whole system can crash.</p>
+<p>In Unix, and shell being a user program, the argument parsing is done in user program memory. So even if the user program memory runs out, system will not crash, unlike Pintos.</p>
+<p>Another advantage is that shell can perform checks on the arguments before passing them to the kernel. It can deal with blank lines, invalid characters etc and not send them to the kernel. This is not so in Pintos.</p>
+<h2 id="system-calls">SYSTEM CALLS</h2>
+<p><strong>&mdash;- DATA STRUCTURES &mdash;-</strong>
+In threads/threads.h:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>parent;              <span style="color:#75715e">/* Which thread creates this one. */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list children;               <span style="color:#75715e">/* Threads that this one creates. */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list_elem child_elem;        <span style="color:#75715e">/* List element for list children. */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> child_load_status;              <span style="color:#75715e">/* Load status of its child*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> child_exit_status;              <span style="color:#75715e">/* Exit status of its child*/</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> list open_fd;                <span style="color:#75715e">/* Fds the thread opens*/</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> file <span style="color:#f92672">*</span>file;                  <span style="color:#75715e">/* Executable file of this thread. */</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> semaphore process_wait;      <span style="color:#75715e">/* Determine whether thread should wait. */</span>
+</span></span></code></pre></div><h4 id="describe-how-file-descriptors-are-associated-with-open-files">Describe how file descriptors are associated with open files</h4>
+<p>Every file is assigned to a unique descriptors, as a number. The <code>fd</code> is a non-negative integer with 0 and 1 as standard input and output respectively, rest all values can be used to allocate the file. The file descriptors are only unique within a process.</p>
+<p><strong>&mdash;- ALGORITHMS &mdash;-</strong></p>
+<h4 id="describe-your-code-for-reading-and-writing-user-data-from-the-kernel">Describe your code for reading and writing user data from the kernel</h4>
+<p>Step 1: Check if the buffer pointer is in a valid range, if not then exit. <br>
+Step 2: Check if the buffer pointer is doing reading operation or writing operation. <br>
+Step 3: The descriptor of the threads will acquire a lock and check if standard input or output operation, (STDIN_FILENO or STDOUT_FILENO) is performed. Then perform the read or write operation while holding the lock and release it after the operation is complete.</p>
+<h4 id="suppose-a-system-call-causes-a-full-page-4096-bytes-of-data-to-be-copied-from-user-space-into-the-kernel--what-is-the-least-and-the-greatest-possible-number-of-inspections-of-the-page-table-eg-calls-to-pagedir_get_page-that-might-result--what-about-for-a-system-call-that-only-copies-2-bytes-of-data--is-there-room-for-improvement-in-these-numbers-and-how-much">Suppose a system call causes a full page (4,096 bytes) of data to be copied from user space into the kernel.  What is the least and the greatest possible number of inspections of the page table (e.g. calls to pagedir_get_page()) that might result?  What about for a system call that only copies 2 bytes of data?  Is there room for improvement in these numbers, and how much?</h4>
+<p>We need to do at least one inspection. One call to  pagedir_get_page() is needed. The greatest number of calls needed for the required inspection is 2. Even for a call that copies only 2 bytes of data the operation remains unchanged.</p>
+<h4 id="briefly-describe-your-implementation-of-the-wait-system-call-and-how-it-interacts-with-process-termination">Briefly describe your implementation of the &ldquo;wait&rdquo; system call and how it interacts with process termination.</h4>
+<p>We use the <code>process_wait()</code> function inside the wait function. The child thread found will be allowed to terminate and any resources it held would be relinquished.</p>
+<p><strong>process_exit:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span><span style="color:#75715e">/* Free the current process&#39;s resources. */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">process_exit</span> (<span style="color:#66d9ef">void</span>)
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>cur <span style="color:#f92672">=</span> thread_current ();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* If child&#39;s parent is still waiting for child, 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     remove itself from children list of its parent
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     and stop its parent waiting. */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (cur<span style="color:#f92672">-&gt;</span>parent <span style="color:#f92672">!=</span> NULL)
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    list_remove(<span style="color:#f92672">&amp;</span>cur<span style="color:#f92672">-&gt;</span>child_elem);
+</span></span><span style="display:flex;"><span>    sema_up(<span style="color:#f92672">&amp;</span>cur<span style="color:#f92672">-&gt;</span>parent<span style="color:#f92672">-&gt;</span>process_wait);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Deal with its chidren --
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     Stop all its children waiting. */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">struct</span> list_elem <span style="color:#f92672">*</span>e;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (e <span style="color:#f92672">=</span> list_begin (<span style="color:#f92672">&amp;</span>cur<span style="color:#f92672">-&gt;</span>children); e <span style="color:#f92672">!=</span> list_end (<span style="color:#f92672">&amp;</span>cur<span style="color:#f92672">-&gt;</span>children);
+</span></span><span style="display:flex;"><span>     e <span style="color:#f92672">=</span> list_next (e))
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span> <span style="color:#f92672">*</span>tmp <span style="color:#f92672">=</span> list_entry (e, <span style="color:#66d9ef">struct</span> <span style="color:#66d9ef">thread</span>, child_elem);
+</span></span><span style="display:flex;"><span>    sema_up(<span style="color:#f92672">&amp;</span>tmp<span style="color:#f92672">-&gt;</span>process_wait);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/* Destroy the current process&#39;s page directory and switch back
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">     to the kernel-only page directory. */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">uint32_t</span> <span style="color:#f92672">*</span>pd <span style="color:#f92672">=</span> cur<span style="color:#f92672">-&gt;</span>pagedir;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (pd <span style="color:#f92672">!=</span> NULL) 
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">/* Correct ordering here is crucial.  We must set
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         cur-&gt;pagedir to NULL before switching page directories,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         so that a timer interrupt can&#39;t switch back to the
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         process page directory.  We must activate the base page
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         directory before destroying the process&#39;s page
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         directory, or our active page directory will be one
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         that&#39;s been freed (and cleared). */</span>
+</span></span><span style="display:flex;"><span>      cur<span style="color:#f92672">-&gt;</span>pagedir <span style="color:#f92672">=</span> NULL;
+</span></span><span style="display:flex;"><span>      pagedir_activate (NULL);
+</span></span><span style="display:flex;"><span>      pagedir_destroy (pd);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="any-access-to-user-program-memory-at-a-user-specified-address-can-fail-due-to-a-bad-pointer-value--such-accesses-must-cause-the-process-to-be-terminated--system-calls-are-fraught-with-such-accesses-eg-a-write-system-call-requires-reading-the-system-call-number-from-the-user-stack-then-each-of-the-calls-three-arguments-then-an-arbitrary-amount-of-user-memory-and-any-of-these-can-fail-at-any-point--this-poses-a-design-and-error-handling-problem-how-do-you-best-avoid-obscuring-the-primary-function-of-code-in-a-morass-of-error-handling--furthermore-when-an-error-is-detected-how-do-you-ensure-that-all-temporarily-allocated-resources-locks-buffers-etc-are-freed--in-a-few-paragraphs-describe-the-strategy-or-strategies-you-adopted-for-managing-these-issues--give-an-example">Any access to user program memory at a user-specified address can fail due to a bad pointer value.  Such accesses must cause the process to be terminated.  System calls are fraught with such accesses, e.g. a &ldquo;write&rdquo; system call requires reading the system call number from the user stack, then each of the call&rsquo;s three arguments, then an arbitrary amount of user memory, and any of these can fail at any point.  This poses a design and error-handling problem: how do you best avoid obscuring the primary function of code in a morass of error-handling?  Furthermore, when an error is detected, how do you ensure that all temporarily allocated resources (locks, buffers, etc.) are freed?  In a few paragraphs, describe the strategy or strategies you adopted for managing these issues.  Give an example</h4>
+<p>We prevent this issue by checking the validity of the buffer pointer before allowing any read/ write operations in the system call. We verify if all the arguments of the system call are in user memory instead of kernel memory. Any pointer that is not valid, i.e. it points to either kernel memory or is a null pointer triggers a page fault and is handled by <code>page_fault()</code> in userprog/exception.c. The process is subsequently terminated using <code>sys_exit()</code></p>
+<p><strong>&mdash;- SYNCHRONIZATION &mdash;-</strong></p>
+<h4 id="the-exec-system-call-returns--1-if-loading-the-new-executable-fails-so-it-cannot-return-before-the-new-executable-has-completed-loading--how-does-your-code-ensure-this--how-is-the-load-successfailure-status-passed-back-to-the-thread-that-calls-exec">The &ldquo;exec&rdquo; system call returns -1 if loading the new executable fails, so it cannot return before the new executable has completed loading.  How does your code ensure this?  How is the load success/failure status passed back to the thread that calls &ldquo;exec&rdquo;? </h4>
+<p>When process_execute() is called, it returns the thread id of the thread if the execution was successful. If the value of the status of the thread is “FAILED” then the return value is -1.</p>
+<p>The status of any child, i.e. the value of the child_status variable in thread_struct, is updated whenever there is a change in the status of the child thread. The initial status upon creation is LOADING. The status changes upon successful completion. And if it is FAILED then the code does as described above.</p>
+<h4 id="consider-parent-process-p-with-child-process-c--how-do-you-ensure-proper-synchronization-and-avoid-race-conditions-when-p-calls-waitc-before-c-exits--after-c-exits--how-do-you-ensure-that-all-resources-are-freed-in-each-case--how-about-when-p-terminates-without-waiting-before-c-exits--after-c-exits--are-there-any-special-cases">Consider parent process P with child process C.  How do you ensure proper synchronization and avoid race conditions when P calls wait(C) before C exits?  After C exits?  How do you ensure that all resources are freed in each case?  How about when P terminates without waiting, before C exits?  After C exits?  Are there any special cases?</h4>
+<ol>
+<li>When P waits for C, P has to stop and wait for C to execute and exit. When C exits, the locks acquired by the C are released.</li>
+<li>If P calls wait after C exits, P will check for its children and will find that it has no children to wait for and hence it P won&rsquo;t wait.</li>
+<li>When P terminates before C exits, all the children of P including C will be killed and they will be terminated and release their locks.</li>
+<li>When P terminates after C exits, C&rsquo;s locks should be released.</li>
+</ol>
+<p><strong>&mdash;- RATIONALE &mdash;&ndash;</strong></p>
+<h4 id="why-did-you-choose-to-implement-access-to-user-memory-from-the-kernel-in-the-way-that-you-did">Why did you choose to implement access to user memory from the kernel in the way that you did?</h4>
+<p>Implementing page fault memory handling is difficult than to implement the validate arguments and status for error catching.</p>
+<p>Whenever a pointer is invalid, it will be caught by the page fault interrupt handler and the syscall_exit will be called.</p>
+<h4 id="what-advantages-or-disadvantages-can-you-see-to-your-design-for-file-descriptors">What advantages or disadvantages can you see to your design for file descriptors?</h4>
+<p>File descriptors are unique for each process, thus, it eliminates the race conditions.</p>
+<p>The cost of having file descriptors can be high and it can slow down the system.</p>
+<h4 id="the-default-tid_t-to-pid_t-mapping-is-the-identity-mapping-if-you-changed-it-what-advantages-are-there-to-your-approach">The default tid_t to pid_t mapping is the identity mapping. If you changed it, what advantages are there to your approach?</h4>
+<p>We didn&rsquo;t changed the default tid_t to pid_t mapping. In our current knowledge and capabilities, it was the most optimised way to deal with the situation.</p>
+<h3 id="outcome-of-the-assignment">OutCome of the Assignment</h3>
+<ol>
+<li><strong>Userprog:</strong></li>
+</ol>
+<p><img src="https://siddheshkanawade.github.io/img/cs301/userprog.png" alt="Image alt"></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    
+    
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Made with ❤️ by Siddhesh Kanawade</span>
+        </div>
+    </div>
+    
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+<script type="text/javascript" src="https://siddheshkanawade.github.io/bundle.min.cf7fb2a9e24608a783e05e4472da2fdf008293289de1ad88d1cba5c143e7e414496dd33b6a228e92f8461ce0c8cbad3c9f9847e73e46dfbce0463393ddd1733a.js" integrity="sha512-z3&#43;yqeJGCKeD4F5Ectov3wCCkyid4a2I0culwUPn5BRJbdM7aiKOkvhGHODIy608n5hH5z5G37zgRjOT3dFzOg=="></script>
+
+
+
+    </body>
+</html>
